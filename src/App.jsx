@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaBeer } from "react-icons/fa";
 import "./App.css";
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
           <div class="svs-card">
             <img src="https://picsum.photos/400/300" alt="" />
             <div>
-              <p class="svs-title"></p>
+              <p class="svs-title">Session</p>
               <div>
-                <i class="arrow"></i>
+                <FaBeer></FaBeer>
               </div>
             </div>
           </div>
