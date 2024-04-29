@@ -11,7 +11,7 @@ function App() {
           Check out our availability and book the date and time that works for
           you.
         </p>
-        <div id="services">
+        <div id="services" className="flex flex-col gap-y-2">
           <ServiceCard serviceName={"Specialist Sessions"}></ServiceCard>
           <ServiceCard serviceName={"Room Rentals"}></ServiceCard>
           <ServiceCard serviceName={"Collaborate With Rhozeland"}></ServiceCard>
