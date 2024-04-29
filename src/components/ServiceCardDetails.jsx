@@ -1,3 +1,5 @@
+import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+
 const ServiceDetails = ({ isVisible, children, details }) => {
   // const specialistDetails = {
   //   title: "SELECT A SECIALIST",
@@ -16,13 +18,17 @@ const ServiceDetails = ({ isVisible, children, details }) => {
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
       {children}
       <h3>{title}</h3>
+
       <p>Starting at ${startingPrice}/hr</p>
+
       <div className="options">
         {details.options.map((option, i) => {
           const IconComponent = option.icon;
           return (
-            <div className="option-item border border-sky-500">
-              <IconComponent />
+            <div className="option-item border border-sky-500 flex justify-between content-center">
+              <div className="self-center">
+                <IconComponent />
+              </div>
               {/* labels and price */}
               <div className="option-label">
                 <h4>{option.label}</h4>
@@ -30,6 +36,9 @@ const ServiceDetails = ({ isVisible, children, details }) => {
               </div>
 
               {/* question mark icon */}
+              <div className="self-end">
+                <HiOutlineQuestionMarkCircle />
+              </div>
             </div>
           );
         })}
