@@ -4,12 +4,16 @@ import { FaHeadphones, FaCamera } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import { MdDesignServices } from "react-icons/md";
 
-const specialistSessionsOptions = [
-  { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
-  { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
-  { icon: TfiWrite, label: "BUSINESS WRITTING", price: "$60+/hr" },
-  { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
-];
+const specialistDetails = {
+  title: "SELECT A SECIALIST",
+  startingPrice: 60,
+  options: [
+    { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
+    { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
+    { icon: TfiWrite, label: "BUSINESS WRITTING", price: "$60+/hr" },
+    { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
+  ],
+};
 
 // const roomRentalsOptions = [
 //   { icon: "photo-room-icon.png", label: "PHOTO/VID ROOM", price: "$50+/hr" },
@@ -37,15 +41,15 @@ function App() {
         <div id="services" className="flex flex-col gap-y-2">
           <ServiceCard
             serviceName={"Specialist Sessions"}
-            options={specialistSessionsOptions}
+            details={specialistDetails}
           ></ServiceCard>
           <ServiceCard
             serviceName={"Room Rentals"}
-            options={specialistSessionsOptions}
+            details={specialistDetails}
           ></ServiceCard>
           <ServiceCard
             serviceName={"Collaborate With Rhozeland"}
-            options={specialistSessionsOptions}
+            details={specialistDetails}
           ></ServiceCard>
         </div>
       </section>

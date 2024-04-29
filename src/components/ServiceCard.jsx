@@ -4,14 +4,12 @@ import podcastImage from "../assets/podcast.jpg";
 import { useState } from "react";
 import ServiceDetails from "./ServiceCardDetails";
 
-const ServiceCard = ({ serviceName, options }) => {
+const ServiceCard = ({ serviceName, details }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
   const toggleDetailsVisibility = () => {
     setIsDetailsVisible(!isDetailsVisible);
   };
-
-  console.log("HERE", options);
 
   return (
     <>
@@ -30,9 +28,10 @@ const ServiceCard = ({ serviceName, options }) => {
             <HiArrowLongRight style={{ fontSize: "27px" }}></HiArrowLongRight>
           </button>
         </footer>
-        <ServiceDetails isVisible={isDetailsVisible} options={options}>
-          <img src={podcastImage} alt="Service preview" className="" />
-        </ServiceDetails>
+        <ServiceDetails
+          isVisible={isDetailsVisible}
+          details={details}
+        ></ServiceDetails>
       </article>
     </>
   );
