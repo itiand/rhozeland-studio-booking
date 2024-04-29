@@ -1,14 +1,17 @@
 import { HiArrowLongRight } from "react-icons/hi2";
+import podcastImage from "../assets/podcast.jpg";
 
 import { useState } from "react";
 import ServiceDetails from "./ServiceCardDetails";
 
-const ServiceCard = ({ serviceName }) => {
+const ServiceCard = ({ serviceName, options }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
   const toggleDetailsVisibility = () => {
     setIsDetailsVisible(!isDetailsVisible);
   };
+
+  console.log("HERE", options);
 
   return (
     <>
@@ -27,8 +30,8 @@ const ServiceCard = ({ serviceName }) => {
             <HiArrowLongRight style={{ fontSize: "27px" }}></HiArrowLongRight>
           </button>
         </footer>
-        <ServiceDetails isVisible={isDetailsVisible}>
-          {/* <img src={podcastImage} alt="Service preview" className="" /> */}
+        <ServiceDetails isVisible={isDetailsVisible} options={options}>
+          <img src={podcastImage} alt="Service preview" className="" />
         </ServiceDetails>
       </article>
     </>

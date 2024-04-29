@@ -1,8 +1,11 @@
-import podcastImage from "../assets/podcast.jpg";
-const ServiceDetails = ({ isVisible, children }) => {
+const ServiceDetails = ({ isVisible, children, options }) => {
   return (
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
-      <img src={podcastImage} alt="Service preview" className="w-full" />
+      {children}
+      {options.map((option, i) => {
+        const IconComponent = option.icon;
+        return <IconComponent />;
+      })}
     </div>
   );
 };
