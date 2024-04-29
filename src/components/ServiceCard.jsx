@@ -2,7 +2,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 
 const ServiceCard = ({ serviceName }) => {
   return (
-    <article className="svs-card bg-slate-200 mb-2">
+    <article className="svs-card bg-slate-200 text-orange-700 mlandscape:text-blue-800 tablet:text-purple-900 desktop:text-green-900">
       <img
         src="https://picsum.photos/400/300"
         alt="Service preview"
