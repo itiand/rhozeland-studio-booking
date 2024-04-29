@@ -1,6 +1,7 @@
 import { HiArrowLongRight } from "react-icons/hi2";
-import podcastImage from "../assets/podcast.jpg";
+
 import { useState } from "react";
+import ServiceDetails from "./ServiceCardDetails";
 
 const ServiceCard = ({ serviceName }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
@@ -26,12 +27,9 @@ const ServiceCard = ({ serviceName }) => {
             <HiArrowLongRight style={{ fontSize: "27px" }}></HiArrowLongRight>
           </button>
         </footer>
-
-        <div ///hidden portion
-          className={`details-section ${isDetailsVisible ? "expanded" : ""}`}
-        >
-          <img src={podcastImage} alt="Service preview" className="" />
-        </div>
+        <ServiceDetails isVisible={isDetailsVisible}>
+          {/* <img src={podcastImage} alt="Service preview" className="" /> */}
+        </ServiceDetails>
       </article>
     </>
   );
