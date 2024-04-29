@@ -20,3 +20,13 @@
 /* laptop styles */
 @media screen and (min-width: 811px) {
 }
+
+.details-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.details-section.expanded {
+  max-height: 1000px;
+}
