@@ -1,5 +1,7 @@
 import "./App.css";
 import ServiceCard from "./components/ServiceCard";
+
+//icons
 import { FaHeadphones, FaCamera } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import { MdDesignServices } from "react-icons/md";
@@ -15,19 +17,31 @@ const specialistDetails = {
   ],
 };
 
-// const roomRentalsOptions = [
-//   { icon: "photo-room-icon.png", label: "PHOTO/VID ROOM", price: "$50+/hr" },
-//   { icon: "sound-room-icon.png", label: "SOUND/MUSIC ROOM", price: "$50+/hr" },
-// ];
+const roomRentalsDetails = {
+  title: "SELECT A ROOM",
+  startingPrice: 50,
+  options: [
+    { icon: FaCamera, label: "PHOTO/VID ROOM", price: "$50+/hr" },
+    {
+      icon: FaHeadphones,
+      label: "SOUND/MUSIC ROOM",
+      price: "$50+/hr",
+    },
+  ],
+};
 
-// const collaborateOptions = [
-//   {
-//     icon: "start-project-icon.png",
-//     label: "START A PROJECT",
-//     price: "FROM $150",
-//   },
-//   { icon: "consultation-icon.png", label: "CONSULTATION", price: "FREE" },
-// ];
+const collaborateDetails = {
+  title: "SELECT A SERVICE",
+  startingPrice: null,
+  options: [
+    { icon: FaCamera, label: "START A PROJECT", price: "FROM $150" },
+    {
+      icon: FaHeadphones,
+      label: "CONSULTATION",
+      price: "FREE",
+    },
+  ],
+};
 
 function App() {
   return (
@@ -45,11 +59,11 @@ function App() {
           ></ServiceCard>
           <ServiceCard
             serviceName={"Room Rentals"}
-            details={specialistDetails}
+            details={roomRentalsDetails}
           ></ServiceCard>
           <ServiceCard
             serviceName={"Collaborate With Rhozeland"}
-            details={specialistDetails}
+            details={collaborateDetails}
           ></ServiceCard>
         </div>
       </section>

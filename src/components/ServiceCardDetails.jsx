@@ -1,18 +1,7 @@
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 const ServiceDetails = ({ isVisible, children, details }) => {
-  // const specialistDetails = {
-  //   title: "SELECT A SECIALIST",
-  //   startingPrice: 60,
-  //   options: [
-  //     { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
-  //     { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
-  //     { icon: TfiWrite, label: "BUSINESS WRITTING", price: "$60+/hr" },
-  //     { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
-  //   ],
-  // };
-
-  console.log("SERVICE CARD");
+  console.log("details", details);
   const { title, startingPrice, options } = details;
   return (
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
@@ -23,19 +12,20 @@ const ServiceDetails = ({ isVisible, children, details }) => {
 
       <div className="options">
         {details.options.map((option, i) => {
-          const IconComponent = option.icon;
+          const OptionIcon = option.icon;
           return (
             <div className="option-item border border-sky-500 flex justify-between content-center">
+              {/* 1st row - icon */}
               <div className="self-center">
-                <IconComponent />
+                <OptionIcon />
               </div>
-              {/* labels and price */}
+              {/* 2nd row - labels and price */}
               <div className="option-label">
                 <h4>{option.label}</h4>
                 <p>{option.price}</p>
               </div>
 
-              {/* question mark icon */}
+              {/*3rd icon - question mark icon */}
               <div className="self-end">
                 <HiOutlineQuestionMarkCircle />
               </div>
