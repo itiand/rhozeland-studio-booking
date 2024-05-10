@@ -2,13 +2,14 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 const ServiceDetails = ({ isVisible, children, details }) => {
   console.log("details", details);
-  const { title, startingPrice, options } = details;
+
+  const { title, startingPrice } = details;
   return (
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
       {children}
       <h3>{title}</h3>
 
-      <p>Starting at ${startingPrice}/hr</p>
+      {startingPrice && <p>Starting at ${startingPrice}/hr</p>}
 
       <div className="options">
         {details.options.map((option, i) => {
