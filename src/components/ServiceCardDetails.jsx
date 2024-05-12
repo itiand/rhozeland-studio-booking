@@ -1,4 +1,6 @@
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+// import logo from "../assets/logo-box.svg"; // Import the SVG file
+import RhozelandLogo from "./RhozelandLogo";
 
 const ServiceDetails = ({ isVisible, children, details }) => {
   console.log("details", details);
@@ -18,7 +20,7 @@ const ServiceDetails = ({ isVisible, children, details }) => {
             <div className="option-item border border-sky-500 flex justify-between content-center">
               {/* 1st row - icon */}
               <div className="self-center">
-                <OptionIcon />
+                <RhozelandLogo />
               </div>
               {/* 2nd row - labels and price */}
               <div className="option-label">

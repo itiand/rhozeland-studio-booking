@@ -21,6 +21,7 @@
 @media screen and (min-width: 811px) {
 }
 
+/* card expand */
 .details-section {
   max-height: 0;
   overflow: hidden;

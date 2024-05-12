@@ -5,6 +5,7 @@ import ServiceCard from "./components/ServiceCard";
 import { FaHeadphones, FaCamera } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import { MdDesignServices } from "react-icons/md";
+import { MdMessage } from "react-icons/md";
 
 const specialistDetails = {
   title: "SELECT A SECIALIST",
@@ -36,7 +37,7 @@ const collaborateDetails = {
   options: [
     { icon: FaCamera, label: "START A PROJECT", price: "FROM $150" },
     {
-      icon: FaHeadphones,
+      icon: MdMessage,
       label: "CONSULTATION",
       price: "FREE",
     },
