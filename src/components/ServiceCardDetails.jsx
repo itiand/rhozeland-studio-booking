@@ -3,7 +3,6 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import RhozelandLogo from "./RhozelandLogo";
 
 const ServiceDetails = ({ isVisible, children, details }) => {
-  console.log("details", details);
 
   const { title, startingPrice } = details;
   return (

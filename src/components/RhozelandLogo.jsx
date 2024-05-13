@@ -1,10 +1,10 @@
 import React from "react";
-import { ReactComponent as Logo } from "../assets/logo-box.svg";
+import Logo from "../assets/logo-box.svg?react";
 
 const RhozelandLogo = () => {
   return (
     <div>
-      <Logo style={{ fill: "blue", width: "50px", height: "50px" }} />
+      <Logo style={{ stroke: "blue", width: "30px", height: "50px" }} />
     </div>
   );
 };
