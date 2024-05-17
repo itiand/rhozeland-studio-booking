@@ -6,6 +6,7 @@ import { FaHeadphones, FaCamera } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import { MdDesignServices } from "react-icons/md";
 import { MdMessage } from "react-icons/md";
+import RhozelandLogo from "./components/RhozelandLogo";
 
 const specialistDetails = {
   title: "SELECT A SECIALIST",
@@ -37,7 +38,7 @@ const collaborateDetails = {
   options: [
     { icon: FaCamera, label: "START A PROJECT", price: "FROM $150" },
     {
-      icon: MdMessage,
+      icon: RhozelandLogo,
       label: "CONSULTATION",
       price: "FREE",
     },

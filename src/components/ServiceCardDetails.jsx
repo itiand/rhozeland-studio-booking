@@ -1,9 +1,7 @@
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 // import logo from "../assets/logo-box.svg"; // Import the SVG file
-import RhozelandLogo from "./RhozelandLogo";
 
 const ServiceDetails = ({ isVisible, children, details }) => {
-
   const { title, startingPrice } = details;
   return (
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
@@ -19,14 +17,13 @@ const ServiceDetails = ({ isVisible, children, details }) => {
             <div className="option-item border border-sky-500 flex justify-between content-center">
               {/* 1st row - icon */}
               <div className="self-center">
-                <RhozelandLogo />
+                <OptionIcon />
               </div>
               {/* 2nd row - labels and price */}
               <div className="option-label">
                 <h4>{option.label}</h4>
                 <p>{option.price}</p>
               </div>
-
               {/*3rd icon - question mark icon */}
               <div className="self-end">
                 <HiOutlineQuestionMarkCircle />
