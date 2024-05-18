@@ -62,29 +62,43 @@ function App() {
     setCurrentStage("selected");
     setSelectedCategory({ main: mainCategory, sub: subCategory });
   };
+
   return (
     <>
-      <section className="px-2.5">
-        <h1 className="">Work With Us Today</h1>
-        <p>
-          Check out our availability and book the date and time that works for
-          you.
-        </p>
-        <div id="services" className="flex flex-col gap-y-2">
-          <ServiceCard
-            serviceName={"Specialist Sessions"}
-            details={specialistDetails}
-          ></ServiceCard>
-          <ServiceCard
-            serviceName={"Room Rentals"}
-            details={roomRentalsDetails}
-          ></ServiceCard>
-          <ServiceCard
-            serviceName={"Collaborate With Rhozeland"}
-            details={collaborateDetails}
-          ></ServiceCard>
-        </div>
-      </section>
+      {currentStage === "initial" && (
+        <section className="px-2.5">
+          <h1 className="">Work With Us Today</h1>
+          <p>
+            Check out our availability and book the date and time that works for
+            you.
+          </p>
+          <div id="services" className="flex flex-col gap-y-2">
+            <ServiceCard
+              serviceName={"Specialist Sessions"}
+              details={specialistDetails}
+              onCategoryClick={(subCategory) => {
+                handleCategoryClick("specialist", subCategory);
+              }}
+            ></ServiceCard>
+            <ServiceCard
+              serviceName={"Room Rentals"}
+              details={roomRentalsDetails}
+              onCategoryClick={(subCategory) => {
+                handleCategoryClick("specialist", subCategory);
+              }}
+            ></ServiceCard>
+            <ServiceCard
+              serviceName={"Collaborate With Rhozeland"}
+              details={collaborateDetails}
+              onCategoryClick={(subCategory) => {
+                handleCategoryClick("specialist", subCategory);
+              }}
+            ></ServiceCard>
+          </div>
+        </section>
+      )}
+      {currentStage === "selected" && <h1>SELECTED STAGGE</h1>}
+      {currentStage === "calendar" && <h1>Calendar Stage</h1>}
     </>
   );
 }

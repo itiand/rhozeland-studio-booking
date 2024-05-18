@@ -15,7 +15,7 @@ import RhozelandLogo from "./RhozelandLogo";
 //   ],
 // };
 
-const ServiceDetails = ({ isVisible, children, details }) => {
+const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
   const { title, startingPrice } = details;
   return (
     <div className={`details-section ${isVisible ? "expanded" : ""}`}>
@@ -33,6 +33,9 @@ const ServiceDetails = ({ isVisible, children, details }) => {
             <div
               key={i}
               className="option-item border border-sky-500 flex justify-between content-center"
+              onClick={() => {
+                onCategoryClick(option.label);
+              }}
             >
               {/* 1st row - icon */}
               <div className="self-center">

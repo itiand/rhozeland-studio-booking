@@ -4,7 +4,7 @@ import podcastImage from "../assets/podcast.jpg";
 import { useState } from "react";
 import ServiceDetails from "./ServiceCardDetails";
 
-const ServiceCard = ({ serviceName, details }) => {
+const ServiceCard = ({ serviceName, details, onCategoryClick }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
 
   const toggleDetailsVisibility = () => {
@@ -31,6 +31,7 @@ const ServiceCard = ({ serviceName, details }) => {
         <ServiceDetails
           isVisible={isDetailsVisible}
           details={details}
+          onCategoryClick={onCategoryClick}
         ></ServiceDetails>
       </article>
     </>
