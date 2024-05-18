@@ -84,14 +84,14 @@ function App() {
               serviceName={"Room Rentals"}
               details={roomRentalsDetails}
               onCategoryClick={(subCategory) => {
-                handleCategoryClick("specialist", subCategory);
+                handleCategoryClick("room", subCategory);
               }}
             ></ServiceCard>
             <ServiceCard
               serviceName={"Collaborate With Rhozeland"}
               details={collaborateDetails}
               onCategoryClick={(subCategory) => {
-                handleCategoryClick("specialist", subCategory);
+                handleCategoryClick("collaborate", subCategory);
               }}
             ></ServiceCard>
           </div>
@@ -109,9 +109,26 @@ function App() {
               {selectedCategory.sub === "DESIGN" && <h1>DESIGN</h1>}
             </>
           )}
-          {/* //if SPECIALIST PHOTO/VIDEO// */}
-          {/* //if SPECIALIST BUSINESS/WRITTING// */}
-          {/* //if SPECIALIST DESIGN// */}
+          {selectedCategory.main === "room" && (
+            <>
+              {selectedCategory.sub === "PHOTO/VID ROOM" && (
+                <h1>ROOM - PHOTO VIDEO ROOM</h1>
+              )}
+              {selectedCategory.sub === "SOUND/MUSIC ROOM" && (
+                <h1>ROOM - SOUND MUSIC ROOM </h1>
+              )}
+            </>
+          )}
+          {selectedCategory.main === "collaborate" && (
+            <>
+              {selectedCategory.sub === "START A PROJECT" && (
+                <h1>COLLABORATE - start a project</h1>
+              )}
+              {selectedCategory.sub === "CONSULTATION" && (
+                <h1>COLLABORATE - Consulation</h1>
+              )}
+            </>
+          )}
         </div>
       )}
       {currentStage === "calendar" && <h1>Calendar Stage</h1>}
