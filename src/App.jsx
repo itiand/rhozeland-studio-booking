@@ -97,7 +97,23 @@ function App() {
           </div>
         </section>
       )}
-      {currentStage === "selected" && <h1>SELECTED STAGGE</h1>}
+      {currentStage === "selected" && (
+        <div>
+          {selectedCategory.main === "specialist" && (
+            <>
+              {selectedCategory.sub === "SOUND/MUSIC" && <h1>SOUND/MUSIC</h1>}
+              {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
+              {selectedCategory.sub === "BUSINESS/WRITTING" && (
+                <h1>BUSINESS/WRITTING</h1>
+              )}
+              {selectedCategory.sub === "DESIGN" && <h1>DESIGN</h1>}
+            </>
+          )}
+          {/* //if SPECIALIST PHOTO/VIDEO// */}
+          {/* //if SPECIALIST BUSINESS/WRITTING// */}
+          {/* //if SPECIALIST DESIGN// */}
+        </div>
+      )}
       {currentStage === "calendar" && <h1>Calendar Stage</h1>}
     </>
   );
