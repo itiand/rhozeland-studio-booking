@@ -1,5 +1,6 @@
 import "./App.css";
 import ServiceCard from "./components/ServiceCard";
+import { useState } from "react";
 
 //icons
 import { FaHeadphones, FaCamera } from "react-icons/fa";
@@ -46,6 +47,21 @@ const collaborateDetails = {
 };
 
 function App() {
+  //states
+  const [currentStage, setCurrentStage] = useState("initial");
+  const [selectedCategory, setSelectedCategory] = useState({
+    main: null,
+    sub: null,
+  });
+
+  //when selected, change selectedCategory state
+
+  const handleCategoryClick = (mainCategory, subCategory) => {
+    //set selected category
+    //stage change to the next
+    setCurrentStage("selected");
+    setSelectedCategory({ main: mainCategory, sub: subCategory });
+  };
   return (
     <>
       <section className="px-2.5">
