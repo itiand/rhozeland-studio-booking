@@ -30,7 +30,10 @@ const ServiceDetails = ({ isVisible, children, details }) => {
           const isRhozelandLogo = OptionIcon === RhozelandLogo;
 
           return (
-            <div className="option-item border border-sky-500 flex justify-between content-center">
+            <div
+              key={i}
+              className="option-item border border-sky-500 flex justify-between content-center"
+            >
               {/* 1st row - icon */}
               <div className="self-center">
                 {isRhozelandLogo ? (
