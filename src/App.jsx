@@ -49,6 +49,13 @@ const collaborateDetails = {
 };
 
 function App() {
+  const contatinerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+    },
+  };
+
   //states
   const [currentStage, setCurrentStage] = useState("initial");
   const [selectedCategory, setSelectedCategory] = useState({
@@ -57,7 +64,6 @@ function App() {
   });
 
   //when selected, change selectedCategory state
-
   const handleCategoryClick = (mainCategory, subCategory) => {
     //set selected category
     //stage change to the next
@@ -65,15 +71,19 @@ function App() {
     setSelectedCategory({ main: mainCategory, sub: subCategory });
   };
 
-  const contatinerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-    },
+  const handleRestart = () => {
+    setCurrentStage("initial");
+    setSelectedCategory({ main: null, sub: null });
   };
 
   return (
     <>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleRestart}
+      >
+        restart
+      </button>
       {currentStage === "initial" && (
         <section className="px-2.5">
           <h1 className="">Work With Us Today</h1>
