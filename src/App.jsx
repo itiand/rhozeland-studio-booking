@@ -9,6 +9,7 @@ import { TfiWrite } from "react-icons/tfi";
 import { MdDesignServices } from "react-icons/md";
 import { MdMessage } from "react-icons/md";
 import RhozelandLogo from "./components/RhozelandLogo";
+import SpecialistStage from "./components/SpecialistStage";
 
 const specialistDetails = {
   title: "SELECT A SECIALIST",
@@ -64,7 +65,7 @@ function App() {
     setSelectedCategory({ main: mainCategory, sub: subCategory });
   };
 
-  const container = {
+  const contatinerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -106,10 +107,16 @@ function App() {
         </section>
       )}
       {currentStage === "selected" && (
-        <motion.div variants={container} initial="hidden" animate="show">
+        <motion.div
+          variants={contatinerVariants}
+          initial="hidden"
+          animate="show"
+        >
           {selectedCategory.main === "specialist" && (
             <>
-              {selectedCategory.sub === "SOUND/MUSIC" && <h1>SOUND/MUSIC</h1>}
+              {selectedCategory.sub === "SOUND/MUSIC" && (
+                <SpecialistStage category={selectedCategory} />
+              )}
               {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
               {selectedCategory.sub === "BUSINESS/WRITTING" && (
                 <h1>BUSINESS/WRITTING</h1>
