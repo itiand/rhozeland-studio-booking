@@ -1,6 +1,7 @@
 import "./App.css";
 import ServiceCard from "./components/ServiceCard";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 //icons
 import { FaHeadphones, FaCamera } from "react-icons/fa";
