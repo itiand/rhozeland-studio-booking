@@ -64,6 +64,13 @@ function App() {
     setSelectedCategory({ main: mainCategory, sub: subCategory });
   };
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+    },
+  };
+
   return (
     <>
       {currentStage === "initial" && (
@@ -99,7 +106,7 @@ function App() {
         </section>
       )}
       {currentStage === "selected" && (
-        <div>
+        <motion.div variants={container} initial="hidden" animate="show">
           {selectedCategory.main === "specialist" && (
             <>
               {selectedCategory.sub === "SOUND/MUSIC" && <h1>SOUND/MUSIC</h1>}
@@ -130,7 +137,7 @@ function App() {
               )}
             </>
           )}
-        </div>
+        </motion.div>
       )}
       {currentStage === "calendar" && <h1>Calendar Stage</h1>}
     </>
