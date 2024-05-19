@@ -50,9 +50,10 @@ const collaborateDetails = {
 
 function App() {
   const contatinerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, x: "100vw" },
     show: {
       opacity: 1,
+      x: 0,
     },
   };
 
@@ -121,6 +122,8 @@ function App() {
           variants={contatinerVariants}
           initial="hidden"
           animate="show"
+          exit={{ x: "-100VW" }}
+          transition={{ type: "spring", stiffness: 100 }}
         >
           {selectedCategory.main === "specialist" && (
             <>
