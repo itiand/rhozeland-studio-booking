@@ -3,50 +3,8 @@ import ServiceCard from "./components/ServiceCard";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-//icons
-import { FaHeadphones, FaCamera } from "react-icons/fa";
-import { TfiWrite } from "react-icons/tfi";
-import { MdDesignServices } from "react-icons/md";
-import { MdMessage } from "react-icons/md";
-import RhozelandLogo from "./components/RhozelandLogo";
 import SpecialistStage from "./components/SpecialistStage";
-
-const specialistDetails = {
-  title: "SELECT A SECIALIST",
-  startingPrice: 60,
-  options: [
-    { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
-    { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
-    { icon: TfiWrite, label: "BUSINESS WRITTING", price: "$60+/hr" },
-    { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
-  ],
-};
-
-const roomRentalsDetails = {
-  title: "SELECT A ROOM",
-  startingPrice: 50,
-  options: [
-    { icon: FaCamera, label: "PHOTO/VID ROOM", price: "$50+/hr" },
-    {
-      icon: FaHeadphones,
-      label: "SOUND/MUSIC ROOM",
-      price: "$50+/hr",
-    },
-  ],
-};
-
-const collaborateDetails = {
-  title: "SELECT A SERVICE",
-  startingPrice: null,
-  options: [
-    { icon: FaCamera, label: "START A PROJECT", price: "FROM $150" },
-    {
-      icon: RhozelandLogo,
-      label: "CONSULTATION",
-      price: "FREE",
-    },
-  ],
-};
+import initialSelection from "./data/specialistDetails";
 
 function App() {
   const contatinerVariants = {
@@ -95,21 +53,21 @@ function App() {
           <div id="services" className="flex flex-col gap-y-2">
             <ServiceCard
               serviceName={"Specialist Sessions"}
-              details={specialistDetails}
+              details={initialSelection.specialistDetails}
               onCategoryClick={(subCategory) => {
                 handleCategoryClick("specialist", subCategory);
               }}
             ></ServiceCard>
             <ServiceCard
               serviceName={"Room Rentals"}
-              details={roomRentalsDetails}
+              details={initialSelection.roomRentalsDetails}
               onCategoryClick={(subCategory) => {
                 handleCategoryClick("room", subCategory);
               }}
             ></ServiceCard>
             <ServiceCard
               serviceName={"Collaborate With Rhozeland"}
-              details={collaborateDetails}
+              details={initialSelection.collaborateDetails}
               onCategoryClick={(subCategory) => {
                 handleCategoryClick("collaborate", subCategory);
               }}

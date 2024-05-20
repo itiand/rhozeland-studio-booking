@@ -23,7 +23,7 @@ const SpecialistStage = ({ category }) => {
           </button>
         </div>
       </div>
-      <div id="select-specialist" className="bg-slate-200 px-2">
+      <div id="select-specialist" className="bg-slate-200 p-4">
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>
           <div>
@@ -46,25 +46,25 @@ const SpecialistStage = ({ category }) => {
           </div>
         </button>
         <div className="specialist-list space-y-4">
-          <div className="flex items-center space-x-4 bg-gray-800 p-4 rounded">
+          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
             <img
-              src="path/to/image1.jpg"
+              src="https://randomuser.me/api/portraits/women/80.jpg"
               alt="Specialist 1"
               className="w-12 h-12 rounded-full"
             />
             <p>John Smith</p>
           </div>
-          <div className="flex items-center space-x-4 bg-gray-800 p-4 rounded">
+          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
             <img
-              src="path/to/image2.jpg"
+              src="https://randomuser.me/api/portraits/women/20.jpg"
               alt="Specialist 2"
               className="w-12 h-12 rounded-full"
             />
             <p>Jane Smith</p>
           </div>
-          <div className="flex items-center space-x-4 bg-gray-800 p-4 rounded">
+          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
             <img
-              src="path/to/image3.jpg"
+              src="https://randomuser.me/api/portraits/men/80.jpg"
               alt="Specialist 3"
               className="w-12 h-12 rounded-full"
             />
