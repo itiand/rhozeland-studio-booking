@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import SpecialistStage from "./components/SpecialistStage";
-import initialSelection from "./data/specialistDetails";
+import initialSelection from "./data/initialSelection";
 
 function App() {
   const contatinerVariants = {
@@ -21,18 +21,24 @@ function App() {
     main: null,
     sub: null,
   });
+  const [appointmentType, setAppointmentType] = useState(null);
+  const [selectedSpecialist, setSelectedSpecialist] = useState(null);
 
   //when selected, change selectedCategory state
   const handleCategoryClick = (mainCategory, subCategory) => {
-    //set selected category
-    //stage change to the next
     setCurrentStage("selected");
     setSelectedCategory({ main: mainCategory, sub: subCategory });
   };
 
+  //click handles
   const handleRestart = () => {
     setCurrentStage("initial");
     setSelectedCategory({ main: null, sub: null });
+  };
+
+  const handleAppointmentTypeClick = (type, specialist) => {
+    setAppointmentType(type);
+    setSelectedSpecialist(specialist);
   };
 
   return (
@@ -75,49 +81,51 @@ function App() {
           </div>
         </section>
       )}
-      {currentStage === "selected" && (
-        <motion.div
-          variants={contatinerVariants}
-          initial="hidden"
-          animate="show"
-          exit={{ x: "-100VW" }}
-          transition={{ type: "spring", stiffness: 100 }}
-        >
-          {selectedCategory.main === "specialist" && (
-            <>
-              {selectedCategory.sub === "SOUND/MUSIC" && (
-                <SpecialistStage category={selectedCategory} />
-              )}
-              {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
-              {selectedCategory.sub === "BUSINESS/WRITTING" && (
-                <h1>BUSINESS/WRITTING</h1>
-              )}
-              {selectedCategory.sub === "DESIGN" && <h1>DESIGN</h1>}
-            </>
-          )}
-          {selectedCategory.main === "room" && (
-            <>
-              {selectedCategory.sub === "PHOTO/VID ROOM" && (
-                <h1>ROOM - PHOTO VIDEO ROOM</h1>
-              )}
-              {selectedCategory.sub === "SOUND/MUSIC ROOM" && (
-                <h1>ROOM - SOUND MUSIC ROOM </h1>
-              )}
-            </>
-          )}
-          {selectedCategory.main === "collaborate" && (
-            <>
-              {selectedCategory.sub === "START A PROJECT" && (
-                <h1>COLLABORATE - start a project</h1>
-              )}
-              {selectedCategory.sub === "CONSULTATION" && (
-                <h1>COLLABORATE - Consulation</h1>
-              )}
-            </>
-          )}
-        </motion.div>
-      )}
-      {currentStage === "calendar" && <h1>Calendar Stage</h1>}
+      <motion.div
+        variants={contatinerVariants}
+        initial="hidden"
+        animate="show"
+        exit={{ x: "-100VW" }}
+        transition={{ type: "spring", stiffness: 100 }}
+      >
+        {currentStage === "selected" && (
+          <>
+            {selectedCategory.main === "specialist" && (
+              <>
+                {selectedCategory.sub === "SOUND/MUSIC" && (
+                  <SpecialistStage category={selectedCategory} />
+                )}
+                {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
+                {selectedCategory.sub === "BUSINESS/WRITTING" && (
+                  <h1>BUSINESS/WRITTING</h1>
+                )}
+                {selectedCategory.sub === "DESIGN" && <h1>DESIGN</h1>}
+              </>
+            )}
+            {selectedCategory.main === "room" && (
+              <>
+                {selectedCategory.sub === "PHOTO/VID ROOM" && (
+                  <h1>ROOM - PHOTO VIDEO ROOM</h1>
+                )}
+                {selectedCategory.sub === "SOUND/MUSIC ROOM" && (
+                  <h1>ROOM - SOUND MUSIC ROOM </h1>
+                )}
+              </>
+            )}
+            {selectedCategory.main === "collaborate" && (
+              <>
+                {selectedCategory.sub === "START A PROJECT" && (
+                  <h1>COLLABORATE - start a project</h1>
+                )}
+                {selectedCategory.sub === "CONSULTATION" && (
+                  <h1>COLLABORATE - Consulation</h1>
+                )}
+              </>
+            )}
+            {currentStage === "calendar" && <h1>Calendar Stage</h1>}
+          </>
+        )}
+      </motion.div>
     </>
   );
 }
