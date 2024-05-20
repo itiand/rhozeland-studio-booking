@@ -2,7 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
-const SpecialistStage = ({ category }) => {
+const SpecialistStage = ({
+  category,
+  onAppointmentTypeClick,
+  onSpecialistSelect,
+}) => {
   return (
     <div>
       <h1 className="text-2xl font-bold">{category.sub} SPECIALIST SESSION</h1>
@@ -15,10 +19,18 @@ const SpecialistStage = ({ category }) => {
       <div id="appointment-type" className="mb-4">
         <h2>Appointment Type</h2>
         <div id="appointment-selection" className="flex flex-col gap-3">
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+          <button
+            className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+            onClick={() => onAppointmentTypeClick("person")}
+          >
             In Person
           </button>
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+          <button
+            className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+            onClick={() => {
+              onAppointmentTypeClick("online");
+            }}
+          >
             Online
           </button>
         </div>
@@ -38,6 +50,9 @@ const SpecialistStage = ({ category }) => {
 
         <button className="w-full">
           <div
+            onClick={() => {
+              onSpecialistSelect("earliest");
+            }}
             id="earlist-btn"
             className=" w-full py-2 px-4 rounded flex items-center gap-4"
           >

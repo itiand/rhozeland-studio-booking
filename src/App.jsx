@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import SpecialistStage from "./components/SpecialistStage";
 import initialSelection from "./data/initialSelection";
+import CalendarStage from "./components/CalendarStage";
 
 function App() {
   const contatinerVariants = {
@@ -38,7 +39,6 @@ function App() {
 
   const handleAppointmentTypeClick = (type, specialist) => {
     setAppointmentType(type);
-    setSelectedSpecialist(specialist);
   };
 
   return (
@@ -93,7 +93,11 @@ function App() {
             {selectedCategory.main === "specialist" && (
               <>
                 {selectedCategory.sub === "SOUND/MUSIC" && (
-                  <SpecialistStage category={selectedCategory} />
+                  <SpecialistStage
+                    category={selectedCategory}
+                    onAppointmentTypeClick={handleAppointmentTypeClick}
+                    onSpecialistSelect={setSelectedSpecialist}
+                  />
                 )}
                 {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
                 {selectedCategory.sub === "BUSINESS/WRITTING" && (
@@ -122,7 +126,12 @@ function App() {
                 )}
               </>
             )}
-            {currentStage === "calendar" && <h1>Calendar Stage</h1>}
+            {appointmentType && selectedSpecialist && (
+              <CalendarStage
+                appointmentType={appointmentType} // Pass appointment type
+                specialist={selectedSpecialist} // Pass selected specialist
+              />
+            )}
           </>
         )}
       </motion.div>
