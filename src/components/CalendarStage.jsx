@@ -9,6 +9,7 @@ import {
   Agenda,
   Inject,
 } from "@syncfusion/ej2-react-schedule";
+
 const CalendarStage = ({ appointmentType, specialist }) => {
   return (
     <ScheduleComponent>
