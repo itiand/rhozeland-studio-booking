@@ -8,6 +8,8 @@ import {
   Month,
   Agenda,
   Inject,
+  ViewDirective,
+  ViewsDirective,
 } from "@syncfusion/ej2-react-schedule";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
@@ -31,7 +33,15 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       transition={{ duration: 0.5 }}
       className="calendar-stage p-4 bg-gray-900 text-white"
     >
-      <ScheduleComponent eventSettings={eventSettings}>
+      <ScheduleComponent
+        eventSettings={eventSettings}
+        selectedDate={new Date()}
+        currentView="Day"
+      >
+        <ViewsDirective>
+          <ViewDirective option="Week" />
+          <ViewDirective option="Day" />
+        </ViewsDirective>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>
     </motion.div>
