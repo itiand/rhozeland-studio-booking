@@ -14,7 +14,7 @@ const ServiceCard = ({ serviceName, details, onCategoryClick }) => {
   return (
     <>
       <article
-        className="svs-card bg-slate-200 text-orange-700 mlandscape:text-blue-800 tablet:text-purple-900 desktop:text-green-900"
+        className="svs-card bg-slate-200 text-orange-700 mlandscape:text-blue-800 tablet:text-purple-900 desktop:text-green-900 cursor-pointer"
         onClick={toggleDetailsVisibility}
       >
         <img
