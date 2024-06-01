@@ -81,19 +81,14 @@ function App() {
           </div>
         </section>
       )}
-      <motion.div
-        variants={contatinerVariants}
-        initial="hidden"
-        animate="show"
-        exit={{ x: "-100VW" }}
-        transition={{ type: "spring", stiffness: 100 }}
-      >
+      <div>
         {currentStage === "selected" && (
           <>
             {selectedCategory.main === "specialist" && (
               <>
                 {selectedCategory.sub === "SOUND/MUSIC" && (
                   <SpecialistStage
+                    contatinerVariants={contatinerVariants}
                     category={selectedCategory}
                     onAppointmentTypeClick={handleAppointmentTypeClick}
                     onSpecialistSelect={setSelectedSpecialist}
@@ -134,7 +129,7 @@ function App() {
             )}
           </>
         )}
-      </motion.div>
+      </div>
     </>
   );
 }

@@ -32,12 +32,12 @@ const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
           return (
             <div
               key={i}
-              className="option-item border border-sky-500 flex justify-between content-center"
+              className="option-item border border-sky-500 flex justify-between content-center cursor-pointer"
               onClick={() => {
                 onCategoryClick(option.label);
               }}
             >
-              {/* 1st row - icon */}
+              {/* 1st column - icon */}
               <div className="self-center">
                 {isRhozelandLogo ? (
                   <RhozelandLogo strokeColor="blue" />
@@ -45,13 +45,13 @@ const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
                   <OptionIcon />
                 )}
               </div>
-              {/* 2nd row - labels and price */}
+              {/* 2nd column - labels and price */}
               <div className="option-label">
                 <h4>{option.label}</h4>
                 <p>{option.price}</p>
               </div>
 
-              {/*3rd icon - question mark icon */}
+              {/*3rd column - question mark icon */}
               <div className="self-end">
                 <HiOutlineQuestionMarkCircle />
               </div>

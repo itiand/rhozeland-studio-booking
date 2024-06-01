@@ -6,9 +6,16 @@ const SpecialistStage = ({
   category,
   onAppointmentTypeClick,
   onSpecialistSelect,
+  contatinerVariants,
 }) => {
   return (
-    <div>
+    <motion.div
+      variants={contatinerVariants}
+      initial="hidden"
+      animate="show"
+      exit={{ x: "-100VW" }}
+      transition={{ type: "spring", stiffness: 100 }}
+    >
       <h1 className="text-2xl font-bold">{category.sub} SPECIALIST SESSION</h1>
       <p>$60/hr</p>
       <div className="info flex justify-between items-center">
@@ -87,7 +94,7 @@ const SpecialistStage = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
