@@ -6,10 +6,10 @@ const SpecialistStage = ({
   category,
   onAppointmentTypeClick,
   onSpecialistSelect,
+  onLocationSelect,
   contatinerVariants,
   appointmentType,
 }) => {
-  const [selectedLocation, setSelectedLocation] = useState(null);
   const handleLocationSelect = (selection) => {
     setSelectedLocation(selection);
   };
@@ -59,19 +59,33 @@ const SpecialistStage = ({
             <button
               className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
               onClick={() => {
-                console.log("GU");
-                handleLocationSelect("Earliest");
+                onLocationSelect("earliest");
               }}
             >
               Earliest Available
             </button>
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button
+              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              onClick={() => {
+                onLocationSelect("photo-video");
+              }}
+            >
               Photo & Video Studio
             </button>
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button
+              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              onClick={() => {
+                onLocationSelect("music-audio");
+              }}
+            >
               Music & Audio Studio
             </button>
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button
+              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              onClick={() => {
+                onLocationSelect("lobby");
+              }}
+            >
               Lobby
             </button>
           </div>

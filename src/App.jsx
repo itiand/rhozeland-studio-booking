@@ -24,6 +24,7 @@ function App() {
   });
   const [appointmentType, setAppointmentType] = useState(null);
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   //when selected, change selectedCategory state
   const handleCategoryClick = (mainCategory, subCategory) => {
@@ -99,6 +100,7 @@ function App() {
                     onAppointmentTypeClick={setAppointmentType}
                     appointmentType={appointmentType}
                     onSpecialistSelect={setSelectedSpecialist}
+                    onLocationSelect={setSelectedLocation}
                   />
                 )}
                 {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
