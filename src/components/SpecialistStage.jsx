@@ -7,12 +7,11 @@ const SpecialistStage = ({
   onAppointmentTypeClick,
   onSpecialistSelect,
   contatinerVariants,
+  appointmentType,
 }) => {
   return (
     <motion.div
       variants={contatinerVariants}
-      initial="hidden"
-      animate="show"
       exit={{ x: "-100VW" }}
       transition={{ type: "spring", stiffness: 100 }}
       className="py-2 px-4"
@@ -43,23 +42,31 @@ const SpecialistStage = ({
           </button>
         </div>
       </div>
-      <div id="location-options">
-        <h2>Location</h2>
-        <div className="options flex flex-col gap-3">
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
-            Earliest Available
-          </button>
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
-            Photo & Video Studio
-          </button>
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
-            Music & Audio Studio
-          </button>
-          <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
-            Lobby
-          </button>
-        </div>
-      </div>
+      {appointmentType === "person" && (
+        <motion.div
+          id="location-options"
+          variants={contatinerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          <h2>Location</h2>
+          <div className="options flex flex-col gap-3">
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+              Earliest Available
+            </button>
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+              Photo & Video Studio
+            </button>
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+              Music & Audio Studio
+            </button>
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+              Lobby
+            </button>
+          </div>
+        </motion.div>
+      )}
+
       <div id="select-specialist" className="bg-slate-200 p-4">
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>
