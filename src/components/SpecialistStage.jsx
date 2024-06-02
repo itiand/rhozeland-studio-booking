@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
@@ -9,6 +9,11 @@ const SpecialistStage = ({
   contatinerVariants,
   appointmentType,
 }) => {
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const handleLocationSelect = (selection) => {
+    setSelectedLocation(selection);
+  };
+
   return (
     <motion.div
       variants={contatinerVariants}
@@ -51,7 +56,13 @@ const SpecialistStage = ({
         >
           <h2>Location</h2>
           <div className="options flex flex-col gap-3">
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button
+              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              onClick={() => {
+                console.log("GU");
+                handleLocationSelect("Earliest");
+              }}
+            >
               Earliest Available
             </button>
             <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
@@ -82,7 +93,7 @@ const SpecialistStage = ({
         <button className="w-full">
           <div
             onClick={() => {
-              onSpecialistSelect("earliest");
+              handleLocationSelect("earliest");
             }}
             id="earlist-btn"
             className=" w-full py-2 px-4 rounded flex items-center gap-4"

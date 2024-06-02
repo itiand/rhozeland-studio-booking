@@ -39,6 +39,16 @@ function App() {
 
   return (
     <>
+      <div className="state-dashboard bg-gray-200 p-4 rounded-lg shadow-md mb-4">
+        <h2 className="text-lg font-semibold">Current State Overview:</h2>
+        <ul>
+          <li>Current Stage: {currentStage}</li>
+          <li>Selected Main Category: {selectedCategory.main || "None"}</li>
+          <li>Selected Sub Category: {selectedCategory.sub || "None"}</li>
+          <li>Appointment Type: {appointmentType || "None"}</li>
+          <li>Selected Specialist: {selectedSpecialist || "None"}</li>
+        </ul>
+      </div>
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleRestart}
