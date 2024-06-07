@@ -73,22 +73,13 @@ function App() {
             <div>
               {currentStage === "selected" && (
                 <>
-                  {/* SPECIALIST STAGE */}
+                  {/* SPECIALIST CATEGORY */}
                   {selectedCategory.main === "Specialist Sessions" && (
                     <>
-                      <SpecialistStage
-                        containerVariants={containerVariants}
-                        category={selectedCategory}
-                        onAppointmentTypeClick={setAppointmentType}
-                        appointmentType={appointmentType}
-                        handleSpecialistSelect={setSelectedSpecialist}
-                        onLocationSelect={setSelectedLocation}
-                        selectedSpecialist={selectedSpecialist}
-                        selectedLocation={selectedLocation}
-                      />
+                      <SpecialistStage containerVariants={containerVariants} />
                     </>
                   )}
-                  {/* ROOM STAGE */}
+                  {/* ROOM CATEGORY */}
                   {selectedCategory.main === "Room Rentals" && (
                     <>
                       {selectedCategory.sub === "PHOTO/VID ROOM" && (
@@ -99,7 +90,7 @@ function App() {
                       )}
                     </>
                   )}
-                  {/* COLLABORATE STAGE */}
+                  {/* COLLABORATE CATEGORY */}
                   {selectedCategory.main === "Collaborate With Rhozeland" && (
                     <>
                       {selectedCategory.sub === "START A PROJECT" && (
