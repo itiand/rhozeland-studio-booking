@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
+import { CategoryContext } from "../context/CategoryContext";
 
-const SpecialistStage = ({
-  category,
-  onAppointmentTypeClick,
-  handleSpecialistSelect,
-  onLocationSelect,
-  containerVariants,
-  appointmentType,
-  selectedLocation,
-  selectedSpecialist,
-}) => {
+const SpecialistStage = ({ containerVariants }) => {
+  const {
+    selectedCategory,
+    appointmentType,
+    selectedLocation,
+    selectedSpecialist,
+    setAppointmentType,
+    setSelectedLocation,
+    setSelectedSpecialist,
+  } = useContext(CategoryContext);
+
   return (
     <motion.div
       variants={containerVariants}
@@ -19,7 +21,9 @@ const SpecialistStage = ({
       transition={{ type: "spring", stiffness: 100 }}
       className="py-2 px-4"
     >
-      <h1 className="text-2xl font-bold">{category.sub} SPECIALIST SESSION</h1>
+      <h1 className="text-2xl font-bold">
+        {selectedCategory.sub} SPECIALIST SESSION
+      </h1>
       <p>$60/hr</p>
       <div className="info flex justify-between items-center">
         <div>time</div>
@@ -33,7 +37,7 @@ const SpecialistStage = ({
             className={`rounded py-2 px-4 hover:bg-slate-500 ${
               appointmentType === "person" ? "bg-slate-500" : "bg-slate-300"
             }`}
-            onClick={() => onAppointmentTypeClick("person")}
+            onClick={() => setAppointmentType("person")}
           >
             In Person
           </button>
@@ -41,16 +45,13 @@ const SpecialistStage = ({
             className={`rounded py-2 px-4 hover:bg-slate-500 ${
               appointmentType === "online" ? "bg-slate-500" : "bg-slate-300"
             }`}
-            onClick={() => {
-              onAppointmentTypeClick("online");
-            }}
+            onClick={() => setAppointmentType("online")}
           >
             Online
           </button>
         </div>
       </div>
 
-      {/* APP if user selects in person */}
       {appointmentType === "person" && (
         <motion.div
           id="location-options"
@@ -66,9 +67,7 @@ const SpecialistStage = ({
                   ? "bg-slate-500"
                   : "bg-slate-300"
               }`}
-              onClick={() => {
-                onLocationSelect("earliest");
-              }}
+              onClick={() => setSelectedLocation("earliest")}
             >
               Earliest Available
             </button>
@@ -78,9 +77,7 @@ const SpecialistStage = ({
                   ? "bg-slate-500"
                   : "bg-slate-300"
               }`}
-              onClick={() => {
-                onLocationSelect("photo-video");
-              }}
+              onClick={() => setSelectedLocation("photo-video")}
             >
               Photo & Video Studio
             </button>
@@ -90,9 +87,7 @@ const SpecialistStage = ({
                   ? "bg-slate-500"
                   : "bg-slate-300"
               }`}
-              onClick={() => {
-                onLocationSelect("music-audio");
-              }}
+              onClick={() => setSelectedLocation("music-audio")}
             >
               Music & Audio Studio
             </button>
@@ -100,9 +95,7 @@ const SpecialistStage = ({
               className={`rounded py-2 px-4 hover:bg-slate-500 ${
                 selectedLocation === "lobby" ? "bg-slate-500" : "bg-slate-300"
               }`}
-              onClick={() => {
-                onLocationSelect("lobby");
-              }}
+              onClick={() => setSelectedLocation("lobby")}
             >
               Lobby
             </button>
@@ -114,16 +107,13 @@ const SpecialistStage = ({
                 type="text"
                 className="bg-slate-300 rounded py-2 px-4 w-full hover:bg-slate-500"
                 placeholder="&#x1F4CD; Add a location"
-                onChange={(e) => {
-                  onLocationSelect(e.target.value);
-                }}
+                onChange={(e) => setSelectedLocation(e.target.value)}
               />
             </div>
           </div>
         </motion.div>
       )}
 
-      {/* SPECIALIST SELECTION */}
       <div id="select-specialist" className="bg-slate-200 p-4">
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>
@@ -137,7 +127,6 @@ const SpecialistStage = ({
           </div>
         </div>
 
-        {/* specialist selections */}
         <div className="specialist-list space-y-4">
           <button
             className={`rounded py-2 px-4 w-full hover:bg-slate-500 cursor-pointer ${
@@ -145,9 +134,7 @@ const SpecialistStage = ({
                 ? "bg-slate-500"
                 : "bg-slate-300"
             }`}
-            onClick={() => {
-              handleSpecialistSelect("earliest");
-            }}
+            onClick={() => setSelectedSpecialist("earliest")}
             id="earlist-btn"
           >
             <div className="flex items-center gap-4">
@@ -161,9 +148,7 @@ const SpecialistStage = ({
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
-            onClick={() => {
-              handleSpecialistSelect("John Smith-1");
-            }}
+            onClick={() => setSelectedSpecialist("John Smith-1")}
           >
             <img
               src="https://randomuser.me/api/portraits/women/80.jpg"
@@ -178,9 +163,7 @@ const SpecialistStage = ({
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
-            onClick={() => {
-              handleSpecialistSelect("Jane Smith-1");
-            }}
+            onClick={() => setSelectedSpecialist("Jane Smith-1")}
           >
             <img
               src="https://randomuser.me/api/portraits/women/20.jpg"
@@ -195,9 +178,7 @@ const SpecialistStage = ({
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
-            onClick={() => {
-              handleSpecialistSelect("Jane Smith-2");
-            }}
+            onClick={() => setSelectedSpecialist("Jane Smith-2")}
           >
             <img
               src="https://randomuser.me/api/portraits/men/80.jpg"
