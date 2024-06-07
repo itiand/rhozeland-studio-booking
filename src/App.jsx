@@ -104,7 +104,7 @@ function App() {
                     category={selectedCategory}
                     onAppointmentTypeClick={setAppointmentType}
                     appointmentType={appointmentType}
-                    onSpecialistSelect={setSelectedSpecialist}
+                    handleSpecialistSelect={setSelectedSpecialist}
                     onLocationSelect={setSelectedLocation}
                   />
                 )}

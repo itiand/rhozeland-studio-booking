@@ -5,7 +5,7 @@ import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 const SpecialistStage = ({
   category,
   onAppointmentTypeClick,
-  onSpecialistSelect,
+  handleSpecialistSelect,
   onLocationSelect,
   contatinerVariants,
   appointmentType,
@@ -108,18 +108,18 @@ const SpecialistStage = ({
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>
           <div>
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500 cursor-pointer">
               &lt;
             </button>
-            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500">
+            <button className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500 cursor-pointer">
               &gt;
             </button>
           </div>
         </div>
-        <button className="w-full">
+        <button className="w-full cursor-pointer hover:bg-slate-500">
           <div
             onClick={() => {
-              handleLocationSelect("earliest");
+              handleSpecialistSelect("earliest");
             }}
             id="earlist-btn"
             className=" w-full py-2 px-4 rounded flex items-center gap-4"
@@ -128,10 +128,13 @@ const SpecialistStage = ({
             <span>Earliest Available</span>
           </div>
         </button>
-
-        {/* specialists */}
         <div className="specialist-list space-y-4">
-          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
+          <div
+            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            onClick={() => {
+              handleSpecialistSelect("John Smith");
+            }}
+          >
             <img
               src="https://randomuser.me/api/portraits/women/80.jpg"
               alt="Specialist 1"
@@ -139,7 +142,12 @@ const SpecialistStage = ({
             />
             <p>John Smith</p>
           </div>
-          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
+          <div
+            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            onClick={() => {
+              handleSpecialistSelect("Jane Smith");
+            }}
+          >
             <img
               src="https://randomuser.me/api/portraits/women/20.jpg"
               alt="Specialist 2"
@@ -147,7 +155,12 @@ const SpecialistStage = ({
             />
             <p>Jane Smith</p>
           </div>
-          <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">
+          <div
+            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            onClick={() => {
+              handleSpecialistSelect("Jane Smith");
+            }}
+          >
             <img
               src="https://randomuser.me/api/portraits/men/80.jpg"
               alt="Specialist 3"
