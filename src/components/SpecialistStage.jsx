@@ -137,6 +137,7 @@ const SpecialistStage = ({
           </div>
         </div>
 
+        {/* specialist selections */}
         <div className="specialist-list space-y-4">
           <button
             className={`rounded py-2 px-4 w-full hover:bg-slate-500 cursor-pointer ${
@@ -156,12 +157,12 @@ const SpecialistStage = ({
           </button>
           <div
             className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
-              selectedSpecialist === "John Smith"
+              selectedSpecialist === "John Smith-1"
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
             onClick={() => {
-              handleSpecialistSelect("John Smith");
+              handleSpecialistSelect("John Smith-1");
             }}
           >
             <img
@@ -173,12 +174,12 @@ const SpecialistStage = ({
           </div>
           <div
             className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
-              selectedSpecialist === "Jane Smith"
+              selectedSpecialist === "Jane Smith-1"
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
             onClick={() => {
-              handleSpecialistSelect("Jane Smith");
+              handleSpecialistSelect("Jane Smith-1");
             }}
           >
             <img
@@ -190,12 +191,12 @@ const SpecialistStage = ({
           </div>
           <div
             className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
-              selectedSpecialist === "Jane Smith"
+              selectedSpecialist === "Jane Smith-2"
                 ? "bg-slate-500"
                 : "bg-gray-500"
             }`}
             onClick={() => {
-              handleSpecialistSelect("Jane Smith");
+              handleSpecialistSelect("Jane Smith-2");
             }}
           >
             <img
