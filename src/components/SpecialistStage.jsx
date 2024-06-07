@@ -47,6 +47,8 @@ const SpecialistStage = ({
           </button>
         </div>
       </div>
+
+      {/* if user selects in person */}
       {appointmentType === "person" && (
         <motion.div
           id="location-options"
@@ -88,10 +90,12 @@ const SpecialistStage = ({
             >
               Lobby
             </button>
+            <span>OR</span>
           </div>
         </motion.div>
       )}
 
+      {/* select a specialist */}
       <div id="select-specialist" className="bg-slate-200 p-4">
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>

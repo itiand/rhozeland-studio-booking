@@ -16,7 +16,7 @@ function App() {
     },
   };
 
-  //states
+  //STATES
   const [currentStage, setCurrentStage] = useState("initial");
   const [selectedCategory, setSelectedCategory] = useState({
     main: null,
@@ -27,6 +27,7 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   //when selected, change selectedCategory state
+  //main --> specialist, room, collaborate
   const handleCategoryClick = (mainCategory, subCategory) => {
     setCurrentStage("selected");
     setSelectedCategory({ main: mainCategory, sub: subCategory });
@@ -36,6 +37,9 @@ function App() {
   const handleRestart = () => {
     setCurrentStage("initial");
     setSelectedCategory({ main: null, sub: null });
+    setSelectedLocation(null);
+    setAppointmentType(null);
+    setSelectedSpecialist(null);
   };
 
   return (
@@ -48,6 +52,7 @@ function App() {
           <li>Selected Sub Category: {selectedCategory.sub || "None"}</li>
           <li>Appointment Type: {appointmentType || "None"}</li>
           <li>Selected Specialist: {selectedSpecialist || "None"}</li>
+          <li>Selected Location: {selectedLocation || "None"}</li>
         </ul>
       </div>
       <button
