@@ -32,7 +32,7 @@ const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
           return (
             <div
               key={i}
-              className="option-item border border-sky-500 flex justify-between content-center cursor-pointer"
+              className="option-item border border-sky-500 flex justify-between content-center cursor-pointer hover:bg-sky-200"
               onClick={() => {
                 onCategoryClick(option.label);
               }}
