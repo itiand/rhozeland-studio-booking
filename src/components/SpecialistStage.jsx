@@ -10,10 +10,6 @@ const SpecialistStage = ({
   contatinerVariants,
   appointmentType,
 }) => {
-  const handleLocationSelect = (selection) => {
-    setSelectedLocation(selection);
-  };
-
   return (
     <motion.div
       variants={contatinerVariants}
@@ -90,7 +86,19 @@ const SpecialistStage = ({
             >
               Lobby
             </button>
-            <span>OR</span>
+            <div className="flex justify-center items-center">
+              <span>OR</span>
+            </div>
+            <div className="flex justify-center items-center">
+              <input
+                type="text"
+                className="bg-slate-300 rounded py-2 px-4 w-full"
+                placeholder="&#x1F4CD; Add a location"
+                onChange={(e) => {
+                  onLocationSelect(e.target.value);
+                }}
+              />
+            </div>
           </div>
         </motion.div>
       )}
@@ -120,6 +128,7 @@ const SpecialistStage = ({
             <span>Earliest Available</span>
           </div>
         </button>
+
         {/* specialists */}
         <div className="specialist-list space-y-4">
           <div className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded">

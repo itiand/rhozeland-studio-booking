@@ -51,8 +51,8 @@ function App() {
           <li>Selected Main Category: {selectedCategory.main || "None"}</li>
           <li>Selected Sub Category: {selectedCategory.sub || "None"}</li>
           <li>Appointment Type: {appointmentType || "None"}</li>
-          <li>Selected Specialist: {selectedSpecialist || "None"}</li>
           <li>Selected Location: {selectedLocation || "None"}</li>
+          <li>Selected Specialist: {selectedSpecialist || "None"}</li>
         </ul>
       </div>
       <button
