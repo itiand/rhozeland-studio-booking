@@ -7,14 +7,14 @@ const SpecialistStage = ({
   onAppointmentTypeClick,
   handleSpecialistSelect,
   onLocationSelect,
-  contatinerVariants,
+  containerVariants,
   appointmentType,
   selectedLocation,
   selectedSpecialist,
 }) => {
   return (
     <motion.div
-      variants={contatinerVariants}
+      variants={containerVariants}
       exit={{ x: "-100VW" }}
       transition={{ type: "spring", stiffness: 100 }}
       className="py-2 px-4"
@@ -54,7 +54,7 @@ const SpecialistStage = ({
       {appointmentType === "person" && (
         <motion.div
           id="location-options"
-          variants={contatinerVariants}
+          variants={containerVariants}
           initial="hidden"
           animate="show"
         >

@@ -2,18 +2,17 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 // import logo from "../assets/logo-box.svg"; // Import the SVG file
 import RhozelandLogo from "./RhozelandLogo";
 
-// const collaborateDetails = {
-//   title: "SELECT A SERVICE",
-//   startingPrice: null,
+//Details example
+// {
+//   title: "SELECT A SECIALIST",
+//   startingPrice: 60,
 //   options: [
-//     { icon: FaCamera, label: "START A PROJECT", price: "FROM $150" },
-//     {
-//       icon: RhozelandLogo,
-//       label: "CONSULTATION",
-//       price: "FREE",
-//     },
+//     { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
+//     { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
+//     { icon: TfiWrite, label: "BUSINESS/WRITTING", price: "$60+/hr" },
+//     { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
 //   ],
-// };
+// },
 
 const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
   const { title, startingPrice } = details;

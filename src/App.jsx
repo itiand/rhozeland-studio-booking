@@ -4,11 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import SpecialistStage from "./components/SpecialistStage";
-import initialSelection from "./data/initialSelection";
+import initialSelection from "./data/initialSelection"; // data
 import CalendarStage from "./components/CalendarStage";
 
 function App() {
-  const contatinerVariants = {
+  const containerVariants = {
     hidden: { opacity: 0, x: "100vw" },
     show: {
       opacity: 1,
@@ -96,27 +96,22 @@ function App() {
       <div>
         {currentStage === "selected" && (
           <>
+            {/* SPECIALIST STAGE */}
             {selectedCategory.main === "specialist" && (
               <>
-                {selectedCategory.sub === "SOUND/MUSIC" && (
-                  <SpecialistStage
-                    contatinerVariants={contatinerVariants}
-                    category={selectedCategory}
-                    onAppointmentTypeClick={setAppointmentType}
-                    appointmentType={appointmentType}
-                    handleSpecialistSelect={setSelectedSpecialist}
-                    onLocationSelect={setSelectedLocation}
-                    selectedSpecialist={selectedSpecialist}
-                    selectedLocation={selectedLocation}
-                  />
-                )}
-                {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}
-                {selectedCategory.sub === "BUSINESS/WRITTING" && (
-                  <h1>BUSINESS/WRITTING</h1>
-                )}
-                {selectedCategory.sub === "DESIGN" && <h1>DESIGN</h1>}
+                <SpecialistStage
+                  containerVariants={containerVariants}
+                  category={selectedCategory}
+                  onAppointmentTypeClick={setAppointmentType}
+                  appointmentType={appointmentType}
+                  handleSpecialistSelect={setSelectedSpecialist}
+                  onLocationSelect={setSelectedLocation}
+                  selectedSpecialist={selectedSpecialist}
+                  selectedLocation={selectedLocation}
+                />
               </>
             )}
+            {/* ROOM STAGE */}
             {selectedCategory.main === "room" && (
               <>
                 {selectedCategory.sub === "PHOTO/VID ROOM" && (
@@ -127,6 +122,7 @@ function App() {
                 )}
               </>
             )}
+            {/* COLLABORATE STAGE */}
             {selectedCategory.main === "collaborate" && (
               <>
                 {selectedCategory.sub === "START A PROJECT" && (
@@ -137,10 +133,12 @@ function App() {
                 )}
               </>
             )}
+
+            {/* CALENDAR STAGE */}
             {appointmentType && selectedSpecialist && (
               <CalendarStage
-                appointmentType={appointmentType} // Pass appointment type
-                specialist={selectedSpecialist} // Pass selected specialist
+                appointmentType={appointmentType}
+                specialist={selectedSpecialist}
               />
             )}
           </>

@@ -12,7 +12,7 @@ const initialSelection = {
     options: [
       { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },
       { icon: FaCamera, label: "PHOTO/VIDEO", price: "$60+/hr" },
-      { icon: TfiWrite, label: "BUSINESS WRITTING", price: "$60+/hr" },
+      { icon: TfiWrite, label: "BUSINESS/WRITTING", price: "$60+/hr" },
       { icon: MdDesignServices, label: "DESIGN", price: "$60+/hr" },
     ],
   },
