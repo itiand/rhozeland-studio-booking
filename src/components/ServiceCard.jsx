@@ -1,11 +1,13 @@
 import { HiArrowLongRight } from "react-icons/hi2";
 import podcastImage from "../assets/podcast.jpg";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ServiceDetails from "./ServiceCardDetails";
+import { CategoryContext } from "../context/CategoryContext";
 
-const ServiceCard = ({ serviceName, details, onCategoryClick }) => {
+const ServiceCard = ({ serviceName, details }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const { handleCategoryClick } = useContext(CategoryContext);
 
   const toggleDetailsVisibility = () => {
     setIsDetailsVisible(!isDetailsVisible);
@@ -31,7 +33,9 @@ const ServiceCard = ({ serviceName, details, onCategoryClick }) => {
         <ServiceDetails
           isVisible={isDetailsVisible}
           details={details}
-          onCategoryClick={onCategoryClick}
+          onCategoryClick={(subCategory) =>
+            handleCategoryClick(serviceName, subCategory)
+          }
         ></ServiceDetails>
       </article>
     </>

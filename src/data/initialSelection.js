@@ -7,7 +7,7 @@ import RhozelandLogo from "../components/RhozelandLogo";
 
 const initialSelection = {
   specialistDetails: {
-    title: "SELECT A SECIALIST",
+    title: "SELECT A SPECIALIST",
     startingPrice: 60,
     options: [
       { icon: FaHeadphones, label: "SOUND/MUSIC", price: "$60+/hr" },

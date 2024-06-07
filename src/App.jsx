@@ -58,23 +58,14 @@ function App() {
                   <ServiceCard
                     serviceName={"Specialist Sessions"}
                     details={initialSelection.specialistDetails}
-                    onCategoryClick={(subCategory) => {
-                      handleCategoryClick("specialist", subCategory);
-                    }}
                   ></ServiceCard>
                   <ServiceCard
                     serviceName={"Room Rentals"}
                     details={initialSelection.roomRentalsDetails}
-                    onCategoryClick={(subCategory) => {
-                      handleCategoryClick("room", subCategory);
-                    }}
                   ></ServiceCard>
                   <ServiceCard
                     serviceName={"Collaborate With Rhozeland"}
                     details={initialSelection.collaborateDetails}
-                    onCategoryClick={(subCategory) => {
-                      handleCategoryClick("collaborate", subCategory);
-                    }}
                   ></ServiceCard>
                 </div>
               </section>
@@ -83,7 +74,7 @@ function App() {
               {currentStage === "selected" && (
                 <>
                   {/* SPECIALIST STAGE */}
-                  {selectedCategory.main === "specialist" && (
+                  {selectedCategory.main === "Specialist Sessions" && (
                     <>
                       <SpecialistStage
                         containerVariants={containerVariants}
@@ -98,7 +89,7 @@ function App() {
                     </>
                   )}
                   {/* ROOM STAGE */}
-                  {selectedCategory.main === "room" && (
+                  {selectedCategory.main === "Room Rentals" && (
                     <>
                       {selectedCategory.sub === "PHOTO/VID ROOM" && (
                         <h1>ROOM - PHOTO VIDEO ROOM</h1>
@@ -109,7 +100,7 @@ function App() {
                     </>
                   )}
                   {/* COLLABORATE STAGE */}
-                  {selectedCategory.main === "collaborate" && (
+                  {selectedCategory.main === "Collaborate With Rhozeland" && (
                     <>
                       {selectedCategory.sub === "START A PROJECT" && (
                         <h1>COLLABORATE - start a project</h1>
