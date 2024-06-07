@@ -106,6 +106,8 @@ function App() {
                     appointmentType={appointmentType}
                     handleSpecialistSelect={setSelectedSpecialist}
                     onLocationSelect={setSelectedLocation}
+                    selectedSpecialist={selectedSpecialist}
+                    selectedLocation={selectedLocation}
                   />
                 )}
                 {selectedCategory.sub === "PHOTO/VIDEO" && <h1>PHOTO/VIDEO</h1>}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
@@ -9,6 +9,8 @@ const SpecialistStage = ({
   onLocationSelect,
   contatinerVariants,
   appointmentType,
+  selectedLocation,
+  selectedSpecialist,
 }) => {
   return (
     <motion.div
@@ -28,13 +30,17 @@ const SpecialistStage = ({
         <h2>Appointment Type</h2>
         <div id="appointment-selection" className="flex flex-col gap-3">
           <button
-            className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+            className={`rounded py-2 px-4 hover:bg-slate-500 ${
+              appointmentType === "person" ? "bg-slate-500" : "bg-slate-300"
+            }`}
             onClick={() => onAppointmentTypeClick("person")}
           >
             In Person
           </button>
           <button
-            className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+            className={`rounded py-2 px-4 hover:bg-slate-500 ${
+              appointmentType === "online" ? "bg-slate-500" : "bg-slate-300"
+            }`}
             onClick={() => {
               onAppointmentTypeClick("online");
             }}
@@ -44,7 +50,7 @@ const SpecialistStage = ({
         </div>
       </div>
 
-      {/* if user selects in person */}
+      {/* APP if user selects in person */}
       {appointmentType === "person" && (
         <motion.div
           id="location-options"
@@ -55,7 +61,11 @@ const SpecialistStage = ({
           <h2>Location</h2>
           <div className="options flex flex-col gap-3">
             <button
-              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              className={`rounded py-2 px-4 hover:bg-slate-500 ${
+                selectedLocation === "earliest"
+                  ? "bg-slate-500"
+                  : "bg-slate-300"
+              }`}
               onClick={() => {
                 onLocationSelect("earliest");
               }}
@@ -63,7 +73,11 @@ const SpecialistStage = ({
               Earliest Available
             </button>
             <button
-              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              className={`rounded py-2 px-4 hover:bg-slate-500 ${
+                selectedLocation === "photo-video"
+                  ? "bg-slate-500"
+                  : "bg-slate-300"
+              }`}
               onClick={() => {
                 onLocationSelect("photo-video");
               }}
@@ -71,7 +85,11 @@ const SpecialistStage = ({
               Photo & Video Studio
             </button>
             <button
-              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              className={`rounded py-2 px-4 hover:bg-slate-500 ${
+                selectedLocation === "music-audio"
+                  ? "bg-slate-500"
+                  : "bg-slate-300"
+              }`}
               onClick={() => {
                 onLocationSelect("music-audio");
               }}
@@ -79,7 +97,9 @@ const SpecialistStage = ({
               Music & Audio Studio
             </button>
             <button
-              className="bg-slate-300 rounded py-2 px-4 hover:bg-slate-500"
+              className={`rounded py-2 px-4 hover:bg-slate-500 ${
+                selectedLocation === "lobby" ? "bg-slate-500" : "bg-slate-300"
+              }`}
               onClick={() => {
                 onLocationSelect("lobby");
               }}
@@ -92,7 +112,7 @@ const SpecialistStage = ({
             <div className="flex justify-center items-center">
               <input
                 type="text"
-                className="bg-slate-300 rounded py-2 px-4 w-full"
+                className="bg-slate-300 rounded py-2 px-4 w-full hover:bg-slate-500"
                 placeholder="&#x1F4CD; Add a location"
                 onChange={(e) => {
                   onLocationSelect(e.target.value);
@@ -103,7 +123,7 @@ const SpecialistStage = ({
         </motion.div>
       )}
 
-      {/* select a specialist */}
+      {/* SPECIALIST SELECTION */}
       <div id="select-specialist" className="bg-slate-200 p-4">
         <div className="flex justify-between items-center">
           <h2>Select a Specialist</h2>
@@ -116,21 +136,30 @@ const SpecialistStage = ({
             </button>
           </div>
         </div>
-        <button className="w-full cursor-pointer hover:bg-slate-500">
-          <div
+
+        <div className="specialist-list space-y-4">
+          <button
+            className={`rounded py-2 px-4 w-full hover:bg-slate-500 cursor-pointer ${
+              selectedSpecialist === "earliest"
+                ? "bg-slate-500"
+                : "bg-slate-300"
+            }`}
             onClick={() => {
               handleSpecialistSelect("earliest");
             }}
             id="earlist-btn"
-            className=" w-full py-2 px-4 rounded flex items-center gap-4"
           >
-            <HiMiniArrowPathRoundedSquare />
-            <span>Earliest Available</span>
-          </div>
-        </button>
-        <div className="specialist-list space-y-4">
+            <div className="flex items-center gap-4">
+              <HiMiniArrowPathRoundedSquare />
+              <span>Earliest Available</span>
+            </div>
+          </button>
           <div
-            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
+              selectedSpecialist === "John Smith"
+                ? "bg-slate-500"
+                : "bg-gray-500"
+            }`}
             onClick={() => {
               handleSpecialistSelect("John Smith");
             }}
@@ -143,7 +172,11 @@ const SpecialistStage = ({
             <p>John Smith</p>
           </div>
           <div
-            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
+              selectedSpecialist === "Jane Smith"
+                ? "bg-slate-500"
+                : "bg-gray-500"
+            }`}
             onClick={() => {
               handleSpecialistSelect("Jane Smith");
             }}
@@ -156,7 +189,11 @@ const SpecialistStage = ({
             <p>Jane Smith</p>
           </div>
           <div
-            className="specialist flex items-center space-x-4 bg-gray-500 p-4 rounded cursor-pointer hover:bg-gray-700"
+            className={`specialist flex items-center space-x-4 p-4 rounded cursor-pointer hover:bg-slate-500 ${
+              selectedSpecialist === "Jane Smith"
+                ? "bg-slate-500"
+                : "bg-gray-500"
+            }`}
             onClick={() => {
               handleSpecialistSelect("Jane Smith");
             }}
