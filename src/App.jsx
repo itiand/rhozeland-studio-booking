@@ -28,8 +28,11 @@ function App() {
           setAppointmentType,
           setSelectedSpecialist,
           setSelectedLocation,
+          projectField,
+          setProjectField,
         }) => (
           <>
+            {/* DASHBOARD */}
             <div className="state-dashboard bg-gray-200 p-4 rounded-lg shadow-md mb-4">
               <h2 className="text-lg font-semibold">Current State Overview:</h2>
               <ul>
@@ -41,6 +44,7 @@ function App() {
                 <li>Appointment Type: {appointmentType || "None"}</li>
                 <li>Selected Location: {selectedLocation || "None"}</li>
                 <li>Selected Specialist: {selectedSpecialist || "None"}</li>
+                <li>Selected Project Field: {projectField || "None"}</li>
               </ul>
             </div>
             <button

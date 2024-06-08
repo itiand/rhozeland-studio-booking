@@ -12,6 +12,7 @@ const CategoryProvider = ({ children }) => {
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [appointments, setAppointments] = useState([]); // New state for storing appointments
+  const [projectField, setProjectField] = useState(null);
 
   const fetchAppointments = async () => {
     try {
@@ -59,6 +60,8 @@ const CategoryProvider = ({ children }) => {
         setSelectedLocation,
         handleCategoryClick,
         handleRestart,
+        projectField,
+        setProjectField,
       }}
     >
       {children}

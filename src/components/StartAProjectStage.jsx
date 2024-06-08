@@ -128,7 +128,7 @@ const StartAProjectStage = ({ containerVariants }) => {
           </button>
         </div>
       </div>
-      {appointmentType && selectedLocation && projectField && (
+      {appointmentType && selectedLocation && (
         <CalendarStage
           appointmentType={appointmentType}
           specialist={selectedLocation}
