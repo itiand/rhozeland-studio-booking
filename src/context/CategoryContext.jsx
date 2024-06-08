@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const CategoryContext = createContext();
 
@@ -8,10 +8,22 @@ const CategoryProvider = ({ children }) => {
     main: null,
     sub: null,
   });
-
   const [appointmentType, setAppointmentType] = useState(null);
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [appointments, setAppointments] = useState([]); // New state for storing appointments
+
+  const fetchAppointments = async () => {
+    try {
+      const response = await fetch(
+        "https://api.example.com/appointments/rhozeland"
+      );
+      const data = await response.json();
+      setAppointments(data);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    }
+  };
 
   const handleCategoryClick = (mainCategory, subCategory) => {
     setCurrentStage("selected");
@@ -24,7 +36,14 @@ const CategoryProvider = ({ children }) => {
     setAppointmentType(null);
     setSelectedSpecialist(null);
     setSelectedLocation(null);
+
+    //needed?
+    setAppointments([]); // Reset appointments
   };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
 
   return (
     <CategoryContext.Provider
@@ -34,6 +53,7 @@ const CategoryProvider = ({ children }) => {
         appointmentType,
         selectedSpecialist,
         selectedLocation,
+        appointments, // Provide appointments to the context
         setAppointmentType,
         setSelectedSpecialist,
         setSelectedLocation,

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CategoryContext } from "../context/CategoryContext";
 import { motion } from "framer-motion";
 import {
   ScheduleComponent,
@@ -13,17 +14,19 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
+  const { appointments } = useContext(CategoryContext);
+
   //sample bookings
-  const data = [
-    {
-      Id: 1,
-      Subject: "Meeting - 1",
-      StartTime: new Date(2024, 6, 2, 10, 0),
-      EndTime: new Date(2024, 6, 2, 12, 30),
-      IsAllDay: false,
-    },
-  ];
-  const eventSettings = { dataSource: data };
+  // const data = [
+  //   {
+  //     Id: 1,
+  //     Subject: "Meeting - 1",
+  //     StartTime: new Date(2024, 6, 2, 10, 0),
+  //     EndTime: new Date(2024, 6, 2, 12, 30),
+  //     IsAllDay: false,
+  //   },
+  // ];
+  const eventSettings = { dataSource: appointments };
 
   return (
     <motion.div
