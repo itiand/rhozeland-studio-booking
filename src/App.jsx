@@ -6,6 +6,7 @@ import initialSelection from "./data/initialSelection";
 import CalendarStage from "./components/CalendarStage";
 import { CategoryProvider, CategoryContext } from "./context/CategoryContext";
 import RoomStage from "./components/RoomStage";
+import StartAProjectStage from "./components/StartAProjectStage";
 
 function App() {
   const containerVariants = {
@@ -95,10 +96,10 @@ function App() {
                   {selectedCategory.main === "Collaborate With Rhozeland" && (
                     <>
                       {selectedCategory.sub === "START A PROJECT" && (
-                        <h1>COLLABORATE - start a project</h1>
+                        <StartAProjectStage />
                       )}
                       {selectedCategory.sub === "CONSULTATION" && (
-                        <h1>COLLABORATE - Consulation</h1>
+                        <StartAProjectStage />
                       )}
                     </>
                   )}
