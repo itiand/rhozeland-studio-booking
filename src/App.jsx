@@ -5,6 +5,7 @@ import SpecialistStage from "./components/SpecialistStage";
 import initialSelection from "./data/initialSelection";
 import CalendarStage from "./components/CalendarStage";
 import { CategoryProvider, CategoryContext } from "./context/CategoryContext";
+import RoomStage from "./components/RoomStage";
 
 function App() {
   const containerVariants = {
@@ -83,10 +84,10 @@ function App() {
                   {selectedCategory.main === "Room Rentals" && (
                     <>
                       {selectedCategory.sub === "PHOTO/VID ROOM" && (
-                        <h1>ROOM - PHOTO VIDEO ROOM</h1>
+                        <RoomStage />
                       )}
                       {selectedCategory.sub === "SOUND/MUSIC ROOM" && (
-                        <h1>ROOM - SOUND MUSIC ROOM </h1>
+                        <RoomStage />
                       )}
                     </>
                   )}
@@ -100,14 +101,6 @@ function App() {
                         <h1>COLLABORATE - Consulation</h1>
                       )}
                     </>
-                  )}
-
-                  {/* CALENDAR STAGE */}
-                  {appointmentType && selectedSpecialist && (
-                    <CalendarStage
-                      appointmentType={appointmentType}
-                      specialist={selectedSpecialist}
-                    />
                   )}
                 </>
               )}

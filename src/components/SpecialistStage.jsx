@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 import { CategoryContext } from "../context/CategoryContext";
+import CalendarStage from "./CalendarStage";
 
 const SpecialistStage = ({ containerVariants }) => {
   const {
@@ -189,6 +190,14 @@ const SpecialistStage = ({ containerVariants }) => {
           </div>
         </div>
       </div>
+
+      {/* CALENDAR STAGE */}
+      {appointmentType && selectedSpecialist && (
+        <CalendarStage
+          appointmentType={appointmentType}
+          specialist={selectedSpecialist}
+        />
+      )}
     </motion.div>
   );
 };
