@@ -20,6 +20,7 @@ const CategoryProvider = ({ children }) => {
         "https://api.example.com/appointments/rhozeland"
       );
       const data = await response.json();
+      console.log("getched!", data);
       setAppointments(data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
