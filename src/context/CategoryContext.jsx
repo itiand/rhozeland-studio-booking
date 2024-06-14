@@ -8,7 +8,7 @@ const CategoryProvider = ({ children }) => {
     main: null,
     sub: null,
   });
-  const [appointmentType, setAppointmentType] = useState(null);
+  const [appointmentType, setAppointmentType] = useState(null); //in person or online
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [appointments, setAppointments] = useState([]); // New state for storing appointments
@@ -20,7 +20,7 @@ const CategoryProvider = ({ children }) => {
         "https://api.example.com/appointments/rhozeland"
       );
       const data = await response.json();
-      console.log("getched!", data);
+      console.log("fetched!", data);
       setAppointments(data);
     } catch (error) {
       console.error("Error fetching appointments:", error);

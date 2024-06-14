@@ -37,7 +37,7 @@ const RoomStage = ({ containerVariants }) => {
             <span>800 sqft</span>
           </div>
         </div>
-        <div id="appointment-type" className="mb-4">
+        {/* <div id="appointment-type" className="mb-4">
           <h2 className="text-xl font-semibold">Appointment Type</h2>
           <div id="appointment-selection" className="flex flex-col gap-3">
             <button
@@ -57,14 +57,12 @@ const RoomStage = ({ containerVariants }) => {
               Online
             </button>
           </div>
-        </div>
+        </div> */}
 
-        {appointmentType && (
-          <CalendarStage
-            appointmentType={appointmentType}
-            specialist={selectedSpecialist}
-          />
-        )}
+        <CalendarStage
+          appointmentType={appointmentType}
+          specialist={selectedSpecialist}
+        />
       </div>
       <button className="bg-green-500 text-white py-2 px-4 rounded mt-4">
         NEXT
