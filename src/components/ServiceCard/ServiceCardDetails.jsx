@@ -1,6 +1,6 @@
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 // import logo from "../assets/logo-box.svg"; // Import the SVG file
-import RhozelandLogo from "./RhozelandLogo";
+import RhozelandLogo from "../RhozelandLogo";
 
 //Details example
 // {
@@ -29,6 +29,7 @@ const ServiceDetails = ({ isVisible, children, details, onCategoryClick }) => {
           const isRhozelandLogo = OptionIcon === RhozelandLogo;
 
           return (
+            //selection button
             <div
               key={i}
               className="option-item border border-sky-500 flex justify-between content-center cursor-pointer hover:bg-sky-200"

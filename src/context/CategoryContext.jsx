@@ -30,6 +30,9 @@ const CategoryProvider = ({ children }) => {
   const handleCategoryClick = (mainCategory, subCategory) => {
     setCurrentStage("selected");
     setSelectedCategory({ main: mainCategory, sub: subCategory });
+    if (mainCategory === "Room Rentals") {
+      setAppointmentType("person");
+    }
   };
 
   const handleRestart = () => {

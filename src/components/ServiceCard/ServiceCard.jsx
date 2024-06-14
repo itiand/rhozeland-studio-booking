@@ -1,9 +1,9 @@
 import { HiArrowLongRight } from "react-icons/hi2";
-import podcastImage from "../assets/podcast.jpg";
+import podcastImage from "../../assets/podcast.jpg";
 
 import { useState, useContext } from "react";
 import ServiceDetails from "./ServiceCardDetails";
-import { CategoryContext } from "../context/CategoryContext";
+import { CategoryContext } from "../../context/CategoryContext";
 
 const ServiceCard = ({ serviceName, details }) => {
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);

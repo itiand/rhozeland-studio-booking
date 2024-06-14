@@ -1,5 +1,5 @@
 import "./App.css";
-import ServiceCard from "./components/ServiceCard";
+import ServiceCard from "./components/ServiceCard/ServiceCard";
 import { motion } from "framer-motion";
 import SpecialistStage from "./components/SpecialistStage";
 import initialSelection from "./data/initialSelection";
