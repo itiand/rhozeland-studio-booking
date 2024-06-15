@@ -47,12 +47,15 @@ function App() {
                 <li>Selected Project Field: {projectField || "None"}</li>
               </ul>
             </div>
+
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={handleRestart}
             >
               restart
             </button>
+
+            {/* INITIAL STAGE */}
             {currentStage === "initial" && (
               <section className="px-2.5">
                 <h1 className="">Work With Us Today</h1>
