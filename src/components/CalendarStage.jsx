@@ -25,7 +25,13 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       scheduleRef.current.refreshEvents();
     }
   };
-  // //sample bookings
+
+  const getEventDetails = (args) => {
+    if (scheduleRef.current) {
+      let event = scheduleRef.current.getEventDetails(args.element);
+      console.log("event", event);
+    }
+  };
 
   const data = [
     {
@@ -107,6 +113,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         selectedDate={new Date()}
         currentView="Day"
         ref={scheduleRef}
+        eventClick={getEventDetails}
       >
         <ViewsDirective>
           <ViewDirective option="Week" />
