@@ -24,8 +24,6 @@
 }
 /*tablet styles*/
 @media screen and (min-width: 641px) {
-  body {
-  }
 }
 
 /* laptop styles */
@@ -41,4 +39,10 @@
 
 .details-section.expanded {
   max-height: 1000px;
+}
+
+/* red border */
+.red-border {
+  border: 1px red solid !important;
+  background-color: aquamarine !important;
 }

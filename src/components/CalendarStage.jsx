@@ -29,7 +29,14 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const getEventDetails = (args) => {
     if (scheduleRef.current) {
       let event = scheduleRef.current.getEventDetails(args.element);
-      console.log("event", event);
+      // console.log("event", event);
+    }
+  };
+
+  const onEventRendered = (args) => {
+    // Compare event's EndTime with the current date and time
+    if (args.data.EndTime < new Date()) {
+      args.element.classList.add("red-border");
     }
   };
 
@@ -47,9 +54,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       StartTime: new Date(2024, 5, 14, 9, 0),
       EndTime: new Date(2024, 5, 14, 10, 0),
       IsAllDay: false,
-      RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=5",
-      IsAllDay: true,
-      isBlock: true,
     },
     {
       Id: 3,
@@ -93,7 +97,24 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       EndTime: new Date(2024, 5, 20, 16, 0),
       IsAllDay: false,
     },
+    {
+      Id: 9,
+      Subject: "Meeting - 9",
+      StartTime: new Date(2024, 5, 21, 10, 0),
+      EndTime: new Date(2024, 5, 21, 11, 0),
+      IsAllDay: false,
+    },
   ];
+
+  // Get today's date
+  const today = new Date();
+
+  // Compare each EndTime to today's date and log true or false
+  data.forEach((event) => {
+    const isPast = event.EndTime < today;
+    console.log(`Event ${event.Id} has ended: ${isPast}`);
+  });
+
   const eventSettings = { dataSource: data };
 
   return (
@@ -110,10 +131,11 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={eventSettings}
-        selectedDate={new Date()}
-        currentView="Day"
+        selectedDate={today}
+        currentView="Week"
         ref={scheduleRef}
         eventClick={getEventDetails}
+        eventRendered={onEventRendered}
       >
         <ViewsDirective>
           <ViewDirective option="Week" />
