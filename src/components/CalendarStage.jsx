@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { CategoryContext } from "../context/CategoryContext";
 import { motion } from "framer-motion";
 import {
@@ -17,8 +17,9 @@ import {
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
-
   const scheduleRef = useRef(null);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const refreshEvents = () => {
     if (scheduleRef.current) {
@@ -34,8 +35,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   };
 
   const onEventRendered = (args) => {
-    // Compare event's EndTime with the current date and time
-    if (args.data.EndTime < new Date()) {
+    // Compare event's EndTime with the selected date
+    if (args.data.EndTime < selectedDate) {
       args.element.classList.add("red-border");
     }
   };
@@ -106,15 +107,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     },
   ];
 
-  // Get today's date
-  const today = new Date();
-
-  // Compare each EndTime to today's date and log true or false
-  data.forEach((event) => {
-    const isPast = event.EndTime < today;
-    console.log(`Event ${event.Id} has ended: ${isPast}`);
-  });
-
   const eventSettings = { dataSource: data };
 
   return (
@@ -131,7 +123,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={eventSettings}
-        selectedDate={today}
+        selectedDate={selectedDate}
         currentView="Week"
         ref={scheduleRef}
         eventClick={getEventDetails}
