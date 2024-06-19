@@ -8,6 +8,7 @@ const CategoryProvider = ({ children }) => {
     main: null,
     sub: null,
   });
+
   const [appointmentType, setAppointmentType] = useState(null); //in person or online
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);

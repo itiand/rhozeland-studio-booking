@@ -45,9 +45,11 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     {
       Id: 1,
       Subject: "Meeting - 1",
-      StartTime: new Date(2024, 5, 13, 10, 0),
-      EndTime: new Date(2024, 5, 13, 12, 30),
+      StartTime: new Date(2024, 5, 9, 13, 0),
+      EndTime: new Date(2024, 5, 9, 14, 30),
       IsAllDay: false,
+      RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=5",
+      RecurrenceException: "20240613", //adding exceptions
     },
     {
       Id: 2,
@@ -107,7 +109,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     },
   ];
 
-  const eventSettings = { dataSource: data };
+  const eventSettings = { dataSource: data, editFollowingEvents: true };
 
   return (
     <motion.div
