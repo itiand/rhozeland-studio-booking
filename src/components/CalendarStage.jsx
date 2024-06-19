@@ -14,6 +14,7 @@ import {
   DragAndDrop,
   TimelineViews,
 } from "@syncfusion/ej2-react-schedule";
+import { DataManager } from "@syncfusion/ej2-data";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
