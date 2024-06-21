@@ -1,0 +1,196 @@
+{
+  "kind": "calendar#events",
+  "etag": "\"p32kfb6fihrmoc0o\"",
+  "summary": "Testing",
+  "description": "",
+  "updated": "2024-06-21T16:29:08.409Z",
+  "timeZone": "America/Toronto",
+  "accessRole": "reader",
+  "defaultReminders": [],
+  "nextSyncToken": "CKj1mfKO7YYDEAAYASD576ezAij576ezAg==",
+  "items": [
+    {
+      "kind": "calendar#event",
+      "etag": "\"3434516420022000\"",
+      "id": "1st2l7no2kh044ibsloeg4ct7r",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MXN0Mmw3bm8ya2gwNDRpYnNsb2VnNGN0N3JfMjAyNDAzMjlUMTcwMDAwWiBlMTMzZjY2ZDA5N2Y5NjM3NmU3YmE0ZjMyMjc4YjZlNTE2ZTQ1ZDA1MTY0OGEyM2QyMDNkMWNiZmI4NjZmYTZiQGc",
+      "created": "2024-05-16T00:14:37.000Z",
+      "updated": "2024-06-01T16:10:10.011Z",
+      "summary": "Design Meeting",
+      "creator": {
+        "email": "christian.dreyes@gmail.com"
+      },
+      "organizer": {
+        "email": "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com",
+        "displayName": "Testing",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2024-03-29T13:00:00-04:00",
+        "timeZone": "America/Mexico_City"
+      },
+      "end": {
+        "dateTime": "2024-03-29T14:00:00-04:00",
+        "timeZone": "America/Mexico_City"
+      },
+      "recurrence": ["RRULE:FREQ=WEEKLY;UNTIL=20240607T055959Z"],
+      "iCalUID": "1st2l7no2kh044ibsloeg4ct7r@google.com",
+      "sequence": 0,
+      "hangoutLink": "https://meet.google.com/vtp-viux-ohz",
+      "conferenceData": {
+        "entryPoints": [
+          {
+            "entryPointType": "video",
+            "uri": "https://meet.google.com/vtp-viux-ohz",
+            "label": "meet.google.com/vtp-viux-ohz"
+          },
+          {
+            "entryPointType": "more",
+            "uri": "https://tel.meet/vtp-viux-ohz?pin=7021331623166",
+            "pin": "7021331623166"
+          },
+          {
+            "regionCode": "CA",
+            "entryPointType": "phone",
+            "uri": "tel:+1-289-323-6648",
+            "label": "+1 289-323-6648",
+            "pin": "426040303"
+          }
+        ],
+        "conferenceSolution": {
+          "key": {
+            "type": "hangoutsMeet"
+          },
+          "name": "Google Meet",
+          "iconUri": "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v6/web-512dp/logo_meet_2020q4_color_2x_web_512dp.png"
+        },
+        "conferenceId": "vtp-viux-ohz"
+      },
+      "attachments": [
+        {
+          "fileUrl": "https://drive.google.com/file/d/156BmxWFUPmIoP_Nv3nA8Vog75vlV5e4u/view?usp=drive_web",
+          "title": "Design Meeting (2024-03-22 11:06 GMT-6)",
+          "mimeType": "video/mp4",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/32/type/video/mp4",
+          "fileId": "156BmxWFUPmIoP_Nv3nA8Vog75vlV5e4u"
+        }
+      ],
+      "eventType": "default"
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"3437952174712000\"",
+      "id": "33afp7et8vsib2aq11q3edj1gt",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MzNhZnA3ZXQ4dnNpYjJhcTExcTNlZGoxZ3QgZTEzM2Y2NmQwOTdmOTYzNzZlN2JhNGYzMjI3OGI2ZTUxNmU0NWQwNTE2NDhhMjNkMjAzZDFjYmZiODY2ZmE2YkBn",
+      "created": "2024-06-21T13:21:27.000Z",
+      "updated": "2024-06-21T13:21:27.356Z",
+      "summary": "Rhozeland ",
+      "creator": {
+        "email": "christian.dreyes@gmail.com"
+      },
+      "organizer": {
+        "email": "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com",
+        "displayName": "Testing",
+        "self": true
+      },
+      "start": {
+        "date": "2024-07-02"
+      },
+      "end": {
+        "date": "2024-07-03"
+      },
+      "transparency": "transparent",
+      "iCalUID": "33afp7et8vsib2aq11q3edj1gt@google.com",
+      "sequence": 0,
+      "eventType": "default"
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"3437952984748000\"",
+      "id": "5o867m005kub5qklt6kdfh39hr",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NW84NjdtMDA1a3ViNXFrbHQ2a2RmaDM5aHIgZTEzM2Y2NmQwOTdmOTYzNzZlN2JhNGYzMjI3OGI2ZTUxNmU0NWQwNTE2NDhhMjNkMjAzZDFjYmZiODY2ZmE2YkBn",
+      "created": "2024-06-21T13:28:10.000Z",
+      "updated": "2024-06-21T13:28:12.374Z",
+      "summary": "gdfgdfgdf",
+      "creator": {
+        "email": "christian.dreyes@gmail.com"
+      },
+      "organizer": {
+        "email": "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com",
+        "displayName": "Testing",
+        "self": true
+      },
+      "start": {
+        "date": "2024-07-04"
+      },
+      "end": {
+        "date": "2024-07-05"
+      },
+      "transparency": "transparent",
+      "iCalUID": "5o867m005kub5qklt6kdfh39hr@google.com",
+      "sequence": 1,
+      "eventType": "default"
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"3437974036298000\"",
+      "id": "53d5qr7fmbar45g08g8ovik0fl",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NTNkNXFyN2ZtYmFyNDVnMDhnOG92aWswZmwgZTEzM2Y2NmQwOTdmOTYzNzZlN2JhNGYzMjI3OGI2ZTUxNmU0NWQwNTE2NDhhMjNkMjAzZDFjYmZiODY2ZmE2YkBn",
+      "created": "2024-06-21T16:23:38.000Z",
+      "updated": "2024-06-21T16:23:38.149Z",
+      "summary": "All Day",
+      "creator": {
+        "email": "christian.dreyes@gmail.com"
+      },
+      "organizer": {
+        "email": "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com",
+        "displayName": "Testing",
+        "self": true
+      },
+      "start": {
+        "date": "2024-06-23"
+      },
+      "end": {
+        "date": "2024-06-24"
+      },
+      "transparency": "transparent",
+      "iCalUID": "53d5qr7fmbar45g08g8ovik0fl@google.com",
+      "sequence": 0,
+      "eventType": "default"
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"3437974696818000\"",
+      "id": "52tcgkjr7qjp73otn8uu6m270h",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NTJ0Y2dranI3cWpwNzNvdG44dXU2bTI3MGggZTEzM2Y2NmQwOTdmOTYzNzZlN2JhNGYzMjI3OGI2ZTUxNmU0NWQwNTE2NDhhMjNkMjAzZDFjYmZiODY2ZmE2YkBn",
+      "created": "2024-06-21T02:15:02.000Z",
+      "updated": "2024-06-21T16:29:08.409Z",
+      "summary": "Not all day",
+      "creator": {
+        "email": "christian.dreyes@gmail.com"
+      },
+      "organizer": {
+        "email": "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com",
+        "displayName": "Testing",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2024-06-26T10:00:00-04:00",
+        "timeZone": "America/Toronto"
+      },
+      "end": {
+        "dateTime": "2024-06-26T11:00:00-04:00",
+        "timeZone": "America/Toronto"
+      },
+      "transparency": "transparent",
+      "iCalUID": "52tcgkjr7qjp73otn8uu6m270h@google.com",
+      "sequence": 1,
+      "eventType": "default"
+    }
+  ]
+}
