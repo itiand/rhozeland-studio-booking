@@ -96,6 +96,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   });
   ////end remote data set up
 
+  const eventSettings = { dataSource: remoteData };
+
   const onDataBinding = (e) => {
     // Extract items from the event result
     let items = e.result.items;
@@ -134,7 +136,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     e.result = schedulerData;
   };
 
-  const eventSettings = { dataSource: remoteData };
   //DATA END
 
   return (
