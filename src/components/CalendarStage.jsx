@@ -109,9 +109,10 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         let start = event.start.dateTime || event.start.date;
         let end = event.end.dateTime || event.end.date;
 
-        if (event.summary === `All Day`) {
-          console.log(`start`, start);
-          console.log(`end`, end);
+        // Convert all-day event dates to Date objects
+        if (isAllDay) {
+          start = new Date(start + "T00:00:00");
+          end = new Date(end + "T00:00:00");
         }
 
         // Push formatted event data to schedulerData
@@ -122,8 +123,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
           EndTime: end,
           IsAllDay: isAllDay,
         });
-        // console.log(`${event.summary} pushed`, schedulerData);
+        console.log(
+          `Event ${event.summary.toUpperCase()} starts at ${start} and ends at ${end} and the type of start is ${typeof start} and the type of end is ${typeof end}`
+        );
       }
+
+      console.log(`schedulerData done`, schedulerData);
     }
     // Update the event settings with the formatted data
     e.result = schedulerData;
