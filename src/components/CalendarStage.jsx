@@ -6,15 +6,16 @@ import {
   Day,
   Week,
   WorkWeek,
-  Month,
   Agenda,
+  Month,
   Inject,
   ViewDirective,
   ViewsDirective,
   DragAndDrop,
   TimelineViews,
 } from "@syncfusion/ej2-react-schedule";
-import { DataManager } from "@syncfusion/ej2-data";
+
+import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
@@ -22,26 +23,33 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  //REFRESH EVENTS
   const refreshEvents = () => {
     if (scheduleRef.current) {
       scheduleRef.current.refreshEvents();
     }
   };
+  //END REFRESH EVENTS
 
+  //EVENT DETAILS
   const getEventDetails = (args) => {
     if (scheduleRef.current) {
       let event = scheduleRef.current.getEventDetails(args.element);
       // console.log("event", event);
     }
   };
+  //END EVENT DETAILS
 
+  //EVENT RENDERED
   const onEventRendered = (args) => {
     // Compare event's EndTime with the selected date
     if (args.data.EndTime < selectedDate) {
       args.element.classList.add("red-border");
     }
   };
+  //END EVENT RENDERED
 
+  //DATA START
   const data = [
     {
       Id: 1,
@@ -110,7 +118,47 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     },
   ];
 
-  const eventSettings = { dataSource: data, editFollowingEvents: true };
+  ////remote data
+  let calendarId =
+    "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
+  const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
+
+  let remoteData = new DataManager({
+    url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
+    adaptor: new WebApiAdaptor(),
+    crossDomain: true,
+  });
+
+  const onDataBinding = (e) => {
+    // Extract items from the event result
+    let items = e.result.items;
+    let schedulerData = [];
+
+    // Check if there are items to process
+    if (items.length > 0) {
+      for (let event of items) {
+        // Determine if the event is all day
+        let isAllDay = !event.start.dateTime;
+        let start = event.start.dateTime || event.start.date;
+        let end = event.end.dateTime || event.end.date;
+
+        // Push formatted event data to schedulerData
+        schedulerData.push({
+          Id: event.id,
+          Subject: event.summary,
+          StartTime: new Date(start),
+          EndTime: new Date(end),
+          IsAllDay: isAllDay,
+        });
+      }
+    }
+
+    // Update the event settings with the formatted data
+    e.result = schedulerData;
+  };
+
+  const eventSettings = { dataSource: remoteData };
+  //DATA END
 
   return (
     <motion.div
@@ -123,6 +171,9 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       <button style={{ backgroundColor: "red" }} onClick={refreshEvents}>
         Refresh Events
       </button>
+      <button onClick={() => console.log("eventSettings", eventSettings)}>
+        Get Data
+      </button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={eventSettings}
@@ -131,11 +182,13 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         ref={scheduleRef}
         eventClick={getEventDetails}
         eventRendered={onEventRendered}
+        dataBinding={onDataBinding}
       >
         <ViewsDirective>
           <ViewDirective option="Week" />
           <ViewDirective option="Day" />
           <ViewDirective option="TimelineDay" />
+          <ViewDirective option="Month" />
         </ViewsDirective>
         <Inject
           services={[
