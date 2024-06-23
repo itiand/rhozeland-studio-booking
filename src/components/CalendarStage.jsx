@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { CategoryContext } from "../context/CategoryContext";
 import { motion } from "framer-motion";
 import {
@@ -16,13 +16,13 @@ import {
   Timezone,
 } from "@syncfusion/ej2-react-schedule";
 
-import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
+import { DataManager, ODataV4Adaptor } from "@syncfusion/ej2-data";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
   const scheduleRef = useRef(null);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [remoteData, setRemoteData] = useState(null);
 
   //REFRESH EVENTS
   const refreshEvents = () => {
@@ -50,7 +50,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   };
   //END EVENT RENDERED
 
-  //DATA START
+  //mock example data
   const data = [
     {
       Id: 1,
@@ -61,48 +61,38 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=5",
       RecurrenceException: "20240613", //adding exceptions
     },
-    {
-      Id: 2,
-      Subject: "Meeting - 2",
-      StartTime: new Date(2024, 5, 14, 9, 0),
-      EndTime: new Date(2024, 5, 14, 10, 0),
-      IsAllDay: false,
-    },
-    {
-      Id: 3,
-      Subject: "Meeting - 3",
-      StartTime: new Date(2024, 5, 15, 11, 0),
-      EndTime: new Date(2024, 5, 15, 12, 0),
-      IsAllDay: false,
-    },
-    {
-      Id: 4,
-      Subject: "Meeting - 4",
-      StartTime: new Date(2024, 5, 16, 14, 0),
-      EndTime: new Date(2024, 5, 16, 15, 0),
-      IsAllDay: false,
-    },
   ];
 
+  ////
+  ////
+  ////
   ////remote data set up
-  let calendarId =
-    "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
-  const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
+  useEffect(() => {
+    const fetchData = async () => {
+      let calendarId =
+        "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
+      const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
 
-  let remoteData = new DataManager({
-    url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
-    adaptor: new WebApiAdaptor(),
-    crossDomain: true,
-  });
+      const remoteData = new DataManager({
+        url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
+        adaptor: new ODataV4Adaptor(),
+        crossDomain: true,
+      });
+
+      setRemoteData(remoteData);
+    };
+
+    fetchData(); // Call the async function
+  }, []);
   ////end remote data set up
-
-  const eventSettings = { dataSource: remoteData };
+  ////
+  ////
+  ///
 
   const onDataBinding = (e) => {
     // Extract items from the event result
     let items = e.result.items;
     let schedulerData = [];
-    let timezone = new Timezone();
 
     // Check if there are items to process
     if (items.length > 0) {
@@ -136,8 +126,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     e.result = schedulerData;
   };
 
-  //DATA END
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -152,7 +140,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       <button onClick={() => console.log("Timezone", Timezone)}>Debug</button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
-        eventSettings={eventSettings}
+        eventSettings={{ dataSource: remoteData }}
         selectedDate={selectedDate}
         currentView="Week"
         ref={scheduleRef}
