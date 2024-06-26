@@ -69,22 +69,20 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   ////
   ////remote data set up
   useEffect(() => {
-    const fetchData = async () => {
-      let calendarId =
-        "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
-      const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
-
-      const remoteData = new DataManager({
-        url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
-        adaptor: new ODataV4Adaptor(),
-        crossDomain: true,
-      });
-      await remoteData.ready;
-      console.log("remoteData", remoteData);
-      setRemoteData(remoteData);
-    };
-
-    fetchData(); // Call the async function
+    // const fetchData = async () => {
+    //   let calendarId =
+    //     "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
+    //   const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
+    //   const remoteData = new DataManager({
+    //     url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
+    //     adaptor: new ODataV4Adaptor(),
+    //     crossDomain: true,
+    //   });
+    //   await remoteData.ready;
+    //   console.log("remoteData", remoteData);
+    //   setRemoteData(remoteData);
+    // };
+    // fetchData(); // Call the async function
   }, []);
   ////end remote data set up
   ////
@@ -128,17 +126,34 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     e.result = schedulerData;
   };
 
+  let remoteData1 = [
+    {
+      Id: 1,
+      Subject: "Testing",
+      StartTime: new Date(2018, 1, 11, 9, 0),
+      EndTime: new Date(2018, 1, 11, 10, 0),
+      IsAllDay: false,
+    },
+    {
+      Id: 2,
+      Subject: "Vacation",
+      StartTime: new Date(2018, 1, 13, 9, 0),
+      EndTime: new Date(2018, 1, 13, 10, 0),
+      IsAllDay: false,
+    },
+  ];
+
   const onAddClick = () => {
     let Data = [
       {
-        Id: 1,
+        Id: 3,
         Subject: "Conference",
         StartTime: new Date(2024, 5, 24, 9, 0), // Updated date to June 24, 2024
         EndTime: new Date(2024, 5, 24, 10, 0), // Updated date to June 24, 2024
         IsAllDay: false,
       },
       {
-        Id: 2,
+        Id: 4,
         Subject: "Meeting",
         StartTime: new Date(2024, 5, 27, 10, 0), // Updated date to June 25, 2024
         EndTime: new Date(2024, 5, 27, 11, 30), // Updated date to June 25, 2024
@@ -161,18 +176,23 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         Refresh Events
       </button>
       <button onClick={() => console.log("Timezone", Timezone)}>Debug</button>
-      <ButtonComponent onClick={onAddClick} ref={buttonObj}>
+      <ButtonComponent
+        id="add"
+        title="Add"
+        onClick={onAddClick}
+        ref={buttonObj}
+      >
         Add Events
       </ButtonComponent>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
-        eventSettings={{ includeFiltersInQuery: true, dataSource: remoteData }}
+        eventSettings={{ dataSource: remoteData1 }}
         selectedDate={selectedDate}
         currentView="Week"
         ref={scheduleRef}
         eventClick={getEventDetails}
         eventRendered={onEventRendered}
-        dataBinding={onDataBinding}
+        // dataBinding={onDataBinding}
       >
         <ViewsDirective>
           <ViewDirective option="Week" />
