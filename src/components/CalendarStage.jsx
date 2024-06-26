@@ -15,14 +15,15 @@ import {
   TimelineViews,
   Timezone,
 } from "@syncfusion/ej2-react-schedule";
-
 import { DataManager, ODataV4Adaptor } from "@syncfusion/ej2-data";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
   const scheduleRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [remoteData, setRemoteData] = useState(null);
+  const buttonObj = useRef(null);
 
   //REFRESH EVENTS
   const refreshEvents = () => {
@@ -78,7 +79,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         adaptor: new ODataV4Adaptor(),
         crossDomain: true,
       });
-
+      await remoteData.ready;
+      console.log("remoteData", remoteData);
       setRemoteData(remoteData);
     };
 
@@ -126,6 +128,27 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     e.result = schedulerData;
   };
 
+  const onAddClick = () => {
+    let Data = [
+      {
+        Id: 1,
+        Subject: "Conference",
+        StartTime: new Date(2024, 5, 24, 9, 0), // Updated date to June 24, 2024
+        EndTime: new Date(2024, 5, 24, 10, 0), // Updated date to June 24, 2024
+        IsAllDay: false,
+      },
+      {
+        Id: 2,
+        Subject: "Meeting",
+        StartTime: new Date(2024, 5, 27, 10, 0), // Updated date to June 25, 2024
+        EndTime: new Date(2024, 5, 27, 11, 30), // Updated date to June 25, 2024
+        IsAllDay: false,
+      },
+    ];
+    scheduleRef.current.addEvent(Data);
+    buttonObj.current.element.setAttribute("disabled", "true");
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -138,9 +161,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         Refresh Events
       </button>
       <button onClick={() => console.log("Timezone", Timezone)}>Debug</button>
+      <ButtonComponent onClick={onAddClick} ref={buttonObj}>
+        Add Events
+      </ButtonComponent>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
-        eventSettings={{ dataSource: remoteData }}
+        eventSettings={{ includeFiltersInQuery: true, dataSource: remoteData }}
         selectedDate={selectedDate}
         currentView="Week"
         ref={scheduleRef}
