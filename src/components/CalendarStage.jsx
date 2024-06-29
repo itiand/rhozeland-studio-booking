@@ -25,32 +25,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const [remoteData, setRemoteData] = useState(null);
   const buttonObj = useRef(null);
 
-  //REFRESH EVENTS
-  const refreshEvents = () => {
-    if (scheduleRef.current) {
-      scheduleRef.current.refreshEvents();
-    }
-  };
-  //END REFRESH EVENTS
-
-  //EVENT DETAILS
-  const getEventDetails = (args) => {
-    if (scheduleRef.current) {
-      let event = scheduleRef.current.getEventDetails(args.element);
-      // console.log("event", event);
-    }
-  };
-  //END EVENT DETAILS
-
-  //EVENT RENDERED
-  const onEventRendered = (args) => {
-    // Compare event's EndTime with the selected date
-    if (args.data.EndTime < selectedDate) {
-      args.element.classList.add("red-border");
-    }
-  };
-  //END EVENT RENDERED
-
   //mock example data
   const data = [
     {
@@ -64,10 +38,41 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     },
   ];
 
-  ////
-  ////
-  ////
-  ////remote data set up
+  //REFRESH EVENTS - REFRESH EVENTS WHEN BUTTON IS CLICKED
+  const refreshEvents = () => {
+    if (scheduleRef.current) {
+      scheduleRef.current.refreshEvents();
+    }
+  };
+  //END REFRESH EVENTS
+
+  //EVENT DETAILS - GETS EVENT DETAILS WHEN EVENT IS CLICKED
+  const getEventDetails = (args) => {
+    if (scheduleRef.current) {
+      let event = scheduleRef.current.getEventDetails(args.element);
+      // console.log("event", event);
+    }
+  };
+  //END EVENT DETAILS
+
+  //EVENT RENDERED - ADDS RED BORDER TO EVENTS THAT END BEFORE THE SELECTED DATE
+  const onEventRendered = (args) => {
+    // Compare event's EndTime with the selected date
+    if (args.data.EndTime < selectedDate) {
+      args.element.classList.add("red-border");
+    }
+  };
+  //END EVENT RENDERED
+
+  const onActionBegin = (args) => {
+    console.log("onActionBegin", args);
+    //save the appointment to the database
+    //then it shows to the database
+  };
+
+  ///////
+  ///START
+  ///////
   useEffect(() => {
     // const fetchData = async () => {
     //   let calendarId =
@@ -84,10 +89,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     // };
     // fetchData(); // Call the async function
   }, []);
-  ////end remote data set up
-  ////
-  ////
-  ///
 
   const onDataBinding = (e) => {
     // Extract items from the event result
@@ -122,10 +123,16 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
       console.log(`schedulerData done`, schedulerData);
     }
-    // Update the event settings with the formatted data
+    // Update the e vent settings with the formatted data
     e.result = schedulerData;
   };
+  ///////
+  //END
+  //////
 
+  ///////
+  //START
+  //////
   let remoteData1 = [
     {
       Id: 1,
@@ -163,6 +170,9 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     scheduleRef.current.addEvent(Data);
     buttonObj.current.element.setAttribute("disabled", "true");
   };
+  ///////
+  //END
+  //////
 
   return (
     <motion.div
