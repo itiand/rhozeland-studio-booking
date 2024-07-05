@@ -64,10 +64,31 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   };
   //END EVENT RENDERED
 
-  const onActionBegin = (args) => {
-    console.log("onActionBegin", args);
-    //save the appointment to the database
-    //then it shows to the database
+  const onActionBegin = async (args) => {
+    if (args.requestType === "eventCreate") {
+      args.cancel = true; // Prevent default action
+      const eventData = args.data[0];
+      console.log("eventData - default cancel", eventData);
+
+      // try {
+      //   const response = await fetch('/api/events', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(eventData),
+      //   });
+
+      //   if (!response.ok) {
+      //     throw new Error('Failed to save event');
+      //   }
+
+      //   const savedEvent = await response.json();
+      //   // Update state with new events
+      // } catch (error) {
+      //   alert('Error saving event: ' + error.message);
+      // }
+    }
   };
 
   ///////
@@ -137,15 +158,15 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     {
       Id: 1,
       Subject: "Testing",
-      StartTime: new Date(2018, 1, 11, 9, 0),
-      EndTime: new Date(2018, 1, 11, 10, 0),
+      StartTime: new Date(2024, 6, 24, 9, 0),
+      EndTime: new Date(2024, 6, 24, 10, 0),
       IsAllDay: false,
     },
     {
       Id: 2,
       Subject: "Vacation",
-      StartTime: new Date(2018, 1, 13, 9, 0),
-      EndTime: new Date(2018, 1, 13, 10, 0),
+      StartTime: new Date(2024, 6, 15, 9, 0),
+      EndTime: new Date(2024, 6, 15, 10, 0),
       IsAllDay: false,
     },
   ];
@@ -155,15 +176,15 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       {
         Id: 3,
         Subject: "Conference",
-        StartTime: new Date(2024, 5, 24, 9, 0), // Updated date to June 24, 2024
-        EndTime: new Date(2024, 5, 24, 10, 0), // Updated date to June 24, 2024
+        StartTime: new Date(2024, 6, 18, 9, 0),
+        EndTime: new Date(2024, 6, 18, 10, 0),
         IsAllDay: false,
       },
       {
         Id: 4,
         Subject: "Meeting",
-        StartTime: new Date(2024, 5, 27, 10, 0), // Updated date to June 25, 2024
-        EndTime: new Date(2024, 5, 27, 11, 30), // Updated date to June 25, 2024
+        StartTime: new Date(2024, 6, 30, 10, 0),
+        EndTime: new Date(2024, 6, 30, 11, 30),
         IsAllDay: false,
       },
     ];
@@ -202,6 +223,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         ref={scheduleRef}
         eventClick={getEventDetails}
         eventRendered={onEventRendered}
+        actionBegin={onActionBegin}
         // dataBinding={onDataBinding}
       >
         <ViewsDirective>
