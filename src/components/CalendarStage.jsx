@@ -49,11 +49,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     room_id: 1,
     employee_id: 1,
     book_date: "2024-07-05T15:53:57.192Z",
-    start_time: "2024-07-05T15:53:57.192Z",
-    end_time: "2024-07-05T15:53:57.192Z",
+    start_time: "2024-08-05T15:53:57.192Z",
+    end_time: "2024-08-05T15:53:57.192Z",
     canceled: true,
     num_guests: 0,
     in_person: true,
+    description: "NEW APPOINTMENT",
   };
 
   const mutation = useMutation({
@@ -77,9 +78,11 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const handleAddEvent = () => {
     mutation.mutate(dummyEvent, {
       onSuccess: (data) => {
+        console.log("Event saved successfully", data);
         alert("Event saved successfully", data);
       },
       onError: (error) => {
+        console.error("Error saving event", error);
         alert("Error saving event", error);
       },
     });
@@ -266,7 +269,10 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       >
         Add Events
       </ButtonComponent>
-      <ButtonComponent onClick={handleAddEvent}>Add Event Test</ButtonComponent>
+
+      <button onClick={handleAddEvent} className="bg-red-500">
+        Add Event Test
+      </button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={{ dataSource: remoteData1 }}
