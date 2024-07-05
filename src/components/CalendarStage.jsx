@@ -45,12 +45,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   ///////
   //dummy data
   const dummyEvent = {
-    client_id: 0,
-    room_id: 0,
-    employee_id: 0,
-    book_date: "2024-07-05T01:47:49.234Z",
-    start_time: "2024-07-05T01:47:49.234Z",
-    end_time: "2024-07-05T01:47:49.234Z",
+    client_id: 3,
+    room_id: 1,
+    employee_id: 1,
+    book_date: "2024-07-05T15:53:57.192Z",
+    start_time: "2024-07-05T15:53:57.192Z",
+    end_time: "2024-07-05T15:53:57.192Z",
     canceled: true,
     num_guests: 0,
     in_person: true,
@@ -58,16 +58,13 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   const mutation = useMutation({
     mutationFn: async (newEvent) => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newEvent),
-        }
-      );
+      const response = await fetch("/api/bookings/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to save event");
@@ -80,10 +77,10 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const handleAddEvent = () => {
     mutation.mutate(dummyEvent, {
       onSuccess: (data) => {
-        console.log("Event saved successfully", data);
+        alert("Event saved successfully", data);
       },
       onError: (error) => {
-        console.error("Error saving event", error);
+        alert("Error saving event", error);
       },
     });
   };
@@ -269,7 +266,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       >
         Add Events
       </ButtonComponent>
-      <button onClick={handleAddEvent}>Add Event Test</button>
+      <ButtonComponent onClick={handleAddEvent}>Add Event Test</ButtonComponent>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={{ dataSource: remoteData1 }}
