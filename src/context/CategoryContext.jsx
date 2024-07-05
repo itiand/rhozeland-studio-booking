@@ -17,9 +17,7 @@ const CategoryProvider = ({ children }) => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch(
-        "https://api.example.com/appointments/rhozeland"
-      );
+      const response = await fetch("http://18.212.183.250:8000/all_bookings/");
       const data = await response.json();
       console.log("fetched!", data);
       setAppointments(data);

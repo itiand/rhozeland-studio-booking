@@ -58,13 +58,16 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   const mutation = useMutation({
     mutationFn: async (newEvent) => {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEvent),
-      });
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newEvent),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to save event");
