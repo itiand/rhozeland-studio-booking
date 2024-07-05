@@ -58,7 +58,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   const mutation = useMutation({
     mutationFn: async (newEvent) => {
-      const response = await fetch("http://18.212.183.250:8000/bookings", {
+      const response = await fetch("/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
