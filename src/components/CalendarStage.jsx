@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { CategoryContext } from "../context/CategoryContext";
 import { motion } from "framer-motion";
 import {
@@ -37,6 +38,55 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       RecurrenceException: "20240613", //adding exceptions
     },
   ];
+
+  ////TESTING POST EVENT
+  ///////
+  ///START
+  ///////
+  //dummy data
+  const dummyEvent = {
+    client_id: 0,
+    room_id: 0,
+    employee_id: 0,
+    book_date: "2024-07-05T01:47:49.234Z",
+    start_time: "2024-07-05T01:47:49.234Z",
+    end_time: "2024-07-05T01:47:49.234Z",
+    canceled: true,
+    num_guests: 0,
+    in_person: true,
+  };
+
+  const mutation = useMutation({
+    mutationFn: async (newEvent) => {
+      const response = await fetch("http://18.212.183.250:8000/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save event");
+      }
+
+      return response.json();
+    },
+  });
+  // Function to handle the button click
+  const handleAddEvent = () => {
+    mutation.mutate(dummyEvent, {
+      onSuccess: (data) => {
+        console.log("Event saved successfully", data);
+      },
+      onError: (error) => {
+        console.error("Error saving event", error);
+      },
+    });
+  };
+  /////
+  ///END
+  /////
 
   //REFRESH EVENTS - REFRESH EVENTS WHEN BUTTON IS CLICKED
   const refreshEvents = () => {
@@ -118,6 +168,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
     // Check if there are items to process
     if (items.length > 0) {
+      // Loop through each event and format the data
       for (let event of items) {
         let isAllDay = !event.start.dateTime;
         let start = event.start.dateTime || event.start.date;
@@ -215,6 +266,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       >
         Add Events
       </ButtonComponent>
+      <button onClick={handleAddEvent}>Add Event Test</button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
         eventSettings={{ dataSource: remoteData1 }}
