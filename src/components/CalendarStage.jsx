@@ -16,34 +16,19 @@ import {
   TimelineViews,
   Timezone,
 } from "@syncfusion/ej2-react-schedule";
-import { DataManager, ODataV4Adaptor } from "@syncfusion/ej2-data";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments } = useContext(CategoryContext);
   const scheduleRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [remoteData, setRemoteData] = useState(null);
   const buttonObj = useRef(null);
-
-  //mock example data
-  const data = [
-    {
-      Id: 1,
-      Subject: "Meeting - 1",
-      StartTime: new Date(2024, 5, 9, 13, 0),
-      EndTime: new Date(2024, 5, 9, 14, 30),
-      IsAllDay: false,
-      RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=5",
-      RecurrenceException: "20240613", //adding exceptions
-    },
-  ];
 
   ////TESTING POST EVENT
   ///////
   ///START
   ///////
-  //dummy data
+  //dummy data to post
   const dummyEvent = {
     client_id: 3,
     room_id: 1,
@@ -94,6 +79,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   //REFRESH EVENTS - REFRESH EVENTS WHEN BUTTON IS CLICKED
   const refreshEvents = () => {
     if (scheduleRef.current) {
+      console.log("refreshing events");
       scheduleRef.current.refreshEvents();
     }
   };
@@ -117,65 +103,68 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   };
   //END EVENT RENDERED
 
+  ///intercepting the event creation
   const onActionBegin = async (args) => {
     if (args.requestType === "eventCreate") {
       args.cancel = true; // Prevent default action
       const eventData = args.data[0];
       console.log("eventData - default cancel", eventData);
 
-      // try {
-      //   const response = await fetch('/api/events', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(eventData),
-      //   });
+      try {
+        const response = await fetch("/api/bookings/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(eventData),
+        });
 
-      //   if (!response.ok) {
-      //     throw new Error('Failed to save event');
-      //   }
+        if (!response.ok) {
+          throw new Error("Failed to save event");
+        }
 
-      //   const savedEvent = await response.json();
-      //   // Update state with new events
-      // } catch (error) {
-      //   alert('Error saving event: ' + error.message);
-      // }
+        const savedEvent = await response.json();
+
+        // Update state with new events
+        console.log("savedEvent", savedEvent);
+        alert("Event saved successfully", savedEvent);
+      } catch (error) {
+        alert("Error saving event: " + error.message);
+      }
     }
   };
 
-  ///////
-  ///START
-  ///////
-  useEffect(() => {
-    // const fetchData = async () => {
-    //   let calendarId =
-    //     "e133f66d097f96376e7ba4f32278b6e516e45d051648a23d203d1cbfb866fa6b@group.calendar.google.com";
-    //   const apiAccessKey = "AIzaSyDOp-Mv-voooD18ddspABgZ-I4qcrwMlnw";
-    //   const remoteData = new DataManager({
-    //     url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiAccessKey}`,
-    //     adaptor: new ODataV4Adaptor(),
-    //     crossDomain: true,
-    //   });
-    //   await remoteData.ready;
-    //   console.log("remoteData", remoteData);
-    //   setRemoteData(remoteData);
-    // };
-    // fetchData(); // Call the async function
-  }, []);
+  //TO FORMAT THE VALUES
+  const exampleDataComingFromTheDB = [
+    {
+      book_date: "2024-07-05T16:29:56",
+      canceled: true,
+      client_id: 3,
+      description: "string",
+      employee_id: 1,
+      end_time: "2024-07-05T16:29:56",
+      id: 0,
+      in_person: true,
+      num_guests: 0,
+      room_id: 1,
+      start_time: "2024-07-05T16:29:56",
+    },
+  ];
 
   const onDataBinding = (e) => {
     // Extract items from the event result
-    let items = e.result.items;
+    let items = e.result;
     let schedulerData = [];
+    console.log("e", e);
+    console.log("items", items);
 
     // Check if there are items to process
     if (items.length > 0) {
       // Loop through each event and format the data
       for (let event of items) {
-        let isAllDay = !event.start.dateTime;
-        let start = event.start.dateTime || event.start.date;
-        let end = event.end.dateTime || event.end.date;
+        let isAllDay = false;
+        let start = event.start_time;
+        let end = event.end_time;
 
         // Convert all-day event dates to Date objects
         if (isAllDay) {
@@ -186,19 +175,14 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         // Push formatted event data to schedulerData
         schedulerData.push({
           Id: event.id,
-          Subject: event.summary,
+          Subject: event.description,
           StartTime: start,
           EndTime: end,
           IsAllDay: isAllDay,
         });
-        console.log(
-          `Event ${event.summary.toUpperCase()} starts at ${start} and ends at ${end} and the type of start is ${typeof start} and the type of end is ${typeof end}`
-        );
       }
-
-      console.log(`schedulerData done`, schedulerData);
     }
-    // Update the e vent settings with the formatted data
+    // Update the event settings with the formatted data
     e.result = schedulerData;
   };
   ///////
@@ -208,42 +192,24 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   ///////
   //START
   //////
-  let remoteData1 = [
-    {
-      Id: 1,
-      Subject: "Testing",
-      StartTime: new Date(2024, 6, 24, 9, 0),
-      EndTime: new Date(2024, 6, 24, 10, 0),
-      IsAllDay: false,
-    },
-    {
-      Id: 2,
-      Subject: "Vacation",
-      StartTime: new Date(2024, 6, 15, 9, 0),
-      EndTime: new Date(2024, 6, 15, 10, 0),
-      IsAllDay: false,
-    },
-  ];
 
   const onAddClick = () => {
     let Data = [
       {
-        Id: 3,
-        Subject: "Conference",
-        StartTime: new Date(2024, 6, 18, 9, 0),
-        EndTime: new Date(2024, 6, 18, 10, 0),
-        IsAllDay: false,
-      },
-      {
-        Id: 4,
-        Subject: "Meeting",
-        StartTime: new Date(2024, 6, 30, 10, 0),
-        EndTime: new Date(2024, 6, 30, 11, 30),
-        IsAllDay: false,
+        client_id: 3,
+        room_id: 1,
+        employee_id: 1,
+        book_date: "2024-08-05T15:53:57.192Z",
+        start_time: "2024-07-26T15:53:57.192Z",
+        end_time: "2024-07-26T15:53:57.192Z",
+        canceled: true,
+        num_guests: 0,
+        in_person: true,
+        description: "NEW APPOINTMENT - from onAddClick",
       },
     ];
     scheduleRef.current.addEvent(Data);
-    buttonObj.current.element.setAttribute("disabled", "true");
+    // buttonObj.current.element.setAttribute("disabled", "true");
   };
   ///////
   //END
@@ -263,11 +229,11 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       <button onClick={() => console.log("Timezone", Timezone)}>Debug</button>
       <ButtonComponent
         id="add"
-        title="Add"
+        title="eventCreate"
         onClick={onAddClick}
         ref={buttonObj}
       >
-        Add Events
+        Event Create
       </ButtonComponent>
 
       <button onClick={handleAddEvent} className="bg-red-500">
@@ -275,14 +241,14 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       </button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
-        eventSettings={{ dataSource: remoteData1 }}
+        eventSettings={{ dataSource: appointments }}
         selectedDate={selectedDate}
-        currentView="Week"
+        currentView="Month"
         ref={scheduleRef}
         eventClick={getEventDetails}
         eventRendered={onEventRendered}
         actionBegin={onActionBegin}
-        // dataBinding={onDataBinding}
+        dataBinding={onDataBinding}
       >
         <ViewsDirective>
           <ViewDirective option="Week" />

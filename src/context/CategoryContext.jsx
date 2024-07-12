@@ -17,7 +17,7 @@ const CategoryProvider = ({ children }) => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch("http://18.212.183.250:8000/all_bookings/");
+      const response = await fetch("/api/all_bookings/");
       const data = await response.json();
       console.log("fetched!", data);
       setAppointments(data);
@@ -25,6 +25,10 @@ const CategoryProvider = ({ children }) => {
       console.error("Error fetching appointments:", error);
     }
   };
+
+  useEffect(() => {
+    console.log("appintment is now", appointments);
+  }, [appointments]);
 
   const handleCategoryClick = (mainCategory, subCategory) => {
     setCurrentStage("selected");
@@ -57,7 +61,7 @@ const CategoryProvider = ({ children }) => {
         appointmentType,
         selectedSpecialist,
         selectedLocation,
-        appointments, // Provide appointments to the context
+        appointments,
         setAppointmentType,
         setSelectedSpecialist,
         setSelectedLocation,
