@@ -104,6 +104,25 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   //END EVENT RENDERED
 
   ///intercepting the event creation
+  const onAddClick = () => {
+    let Data = [
+      {
+        client_id: 3,
+        room_id: 1,
+        employee_id: 1,
+        book_date: "2024-08-05T15:53:57.192Z",
+        start_time: "2024-07-25T15:53:57.192Z",
+        end_time: "2024-07-25T15:53:57.192Z",
+        canceled: true,
+        num_guests: 0,
+        in_person: true,
+        description: "NEW APPOINTMENT - from onAddClick",
+      },
+    ];
+    scheduleRef.current.addEvent(Data);
+    // buttonObj.current.element.setAttribute("disabled", "true");
+  };
+
   const onActionBegin = async (args) => {
     if (args.requestType === "eventCreate") {
       args.cancel = true; // Prevent default action
@@ -126,6 +145,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         const savedEvent = await response.json();
 
         // Update state with new events
+        refreshEvents();
         console.log("savedEvent", savedEvent);
         alert("Event saved successfully", savedEvent);
       } catch (error) {
@@ -184,32 +204,6 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     }
     // Update the event settings with the formatted data
     e.result = schedulerData;
-  };
-  ///////
-  //END
-  //////
-
-  ///////
-  //START
-  //////
-
-  const onAddClick = () => {
-    let Data = [
-      {
-        client_id: 3,
-        room_id: 1,
-        employee_id: 1,
-        book_date: "2024-08-05T15:53:57.192Z",
-        start_time: "2024-07-26T15:53:57.192Z",
-        end_time: "2024-07-26T15:53:57.192Z",
-        canceled: true,
-        num_guests: 0,
-        in_person: true,
-        description: "NEW APPOINTMENT - from onAddClick",
-      },
-    ];
-    scheduleRef.current.addEvent(Data);
-    // buttonObj.current.element.setAttribute("disabled", "true");
   };
   ///////
   //END
