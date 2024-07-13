@@ -112,22 +112,36 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         room_id: 1,
         employee_id: 1,
         book_date: "2024-08-05T15:53:57.192Z",
-        start_time: "2024-07-25T15:53:57.192Z",
-        end_time: "2024-07-25T15:53:57.192Z",
+        start_time: "2024-07-27T15:53:57.192Z",
+        end_time: "2024-07-27T15:53:57.192Z",
         canceled: true,
         num_guests: 0,
         in_person: true,
         description: "NEW APPOINTMENT - from onAddClick",
+      },
+      {
+        client_id: 3,
+        room_id: 1,
+        employee_id: 1,
+        book_date: "2024-08-05T15:53:57.192Z",
+        start_time: "2024-07-27T15:53:57.192Z",
+        end_time: "2024-07-27T15:53:57.192Z",
+        canceled: true,
+        num_guests: 0,
+        in_person: true,
+        description: "NEW APPOINTMENT1 - from onAddClick",
       },
     ];
     scheduleRef.current.addEvent(Data);
     // buttonObj.current.element.setAttribute("disabled", "true");
   };
 
+  //intercepting the event creation to the UI
   const onActionBegin = async (args) => {
     if (args.requestType === "eventCreate") {
+      console.log("args", args);
       args.cancel = true; // Prevent default action
-      const eventData = args.data[0];
+      const eventData = args.data;
       console.log("eventData - default cancel", eventData);
 
       try {
