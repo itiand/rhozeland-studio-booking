@@ -59,6 +59,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       return response.json();
     },
   });
+
   // Function to handle the button click
   const handleAddEvent = () => {
     mutation.mutate(dummyEvent, {
@@ -177,7 +178,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     let schedulerData = [];
 
     // Check if there are items to process
-    if (items.length > 0) {
+    if (appointments.length > 0) {
       // Loop through each event and format the data
       for (let appointment of appointments) {
         let isAllDay = false;
