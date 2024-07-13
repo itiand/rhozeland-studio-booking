@@ -173,18 +173,16 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   const onDataBinding = (e) => {
     // Extract items from the event result
-    let items = e.result;
+    let appointments = e.result;
     let schedulerData = [];
-    console.log("e", e);
-    console.log("items", items);
 
     // Check if there are items to process
     if (items.length > 0) {
       // Loop through each event and format the data
-      for (let event of items) {
+      for (let appointment of appointments) {
         let isAllDay = false;
-        let start = event.start_time;
-        let end = event.end_time;
+        let start = appointment.start_time;
+        let end = appointment.end_time;
 
         // Convert all-day event dates to Date objects
         if (isAllDay) {
@@ -194,8 +192,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
         // Push formatted event data to schedulerData
         schedulerData.push({
-          Id: event.id,
-          Subject: event.description,
+          Id: appointment.id,
+          Subject: appointment.description,
           StartTime: start,
           EndTime: end,
           IsAllDay: isAllDay,
