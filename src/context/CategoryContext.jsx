@@ -68,6 +68,7 @@ const CategoryProvider = ({ children }) => {
         handleRestart,
         projectField,
         setProjectField,
+        fetchAppointments,
       }}
     >
       {children}

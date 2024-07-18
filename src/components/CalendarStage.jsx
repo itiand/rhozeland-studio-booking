@@ -19,7 +19,8 @@ import {
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
-  const { appointments } = useContext(CategoryContext);
+  const { appointments, setAppointments, fetchAppointments } =
+    useContext(CategoryContext);
   const scheduleRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const buttonObj = useRef(null);
@@ -112,12 +113,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         room_id: 1,
         employee_id: 1,
         book_date: "2024-08-05T15:53:57.192Z",
-        start_time: "2024-07-24T15:53:57.192Z",
-        end_time: "2024-07-24T15:53:57.192Z",
+        start_time: "2024-07-22T15:53:57.192Z",
+        end_time: "2024-07-22T15:53:57.192Z",
         canceled: true,
         num_guests: 0,
         in_person: true,
-        description: "NEW APPOINTMENT - from onAddClick",
+        description: "FROM WEDNESDAY NIGHT",
       },
     ];
     scheduleRef.current.addEvent(Data);
@@ -147,7 +148,9 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
         // Update state with new events
         console.log("savedEvent", savedEvent);
+
         alert("Event saved successfully", savedEvent);
+        fetchAppointments();
       } catch (error) {
         alert("Error saving event: " + error.message);
       }
