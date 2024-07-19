@@ -67,6 +67,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       onSuccess: (data) => {
         console.log("Event saved successfully", data);
         alert("Event saved successfully", data);
+        fetchAppointments();
       },
       onError: (error) => {
         console.error("Error saving event", error);
@@ -228,11 +229,11 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         onClick={onAddClick}
         ref={buttonObj}
       >
-        Event Create
+        onAddClick [intercepted method]
       </ButtonComponent>
 
       <button onClick={handleAddEvent} className="bg-red-500">
-        Add Event Test
+        handleAddEvent [useMutation hook]
       </button>
       {/* SCHEDULE COMPONENT */}
       <ScheduleComponent
