@@ -132,29 +132,17 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       args.cancel = true; // Prevent default action
       const eventData = args.data[0]; // this is just one event. args.data is an array of events. but the post method expects a single event.
 
-      try {
-        const response = await fetch("/api/bookings/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(eventData),
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to save event");
-        }
-
-        const savedEvent = await response.json();
-
-        // Update state with new events
-        console.log("savedEvent", savedEvent);
-
-        alert("Event saved successfully", savedEvent);
-        fetchAppointments();
-      } catch (error) {
-        alert("Error saving event: " + error.message);
-      }
+      mutation.mutate(eventData, {
+        onSuccess: (data) => {
+          console.log("Event Saved Successfully", data);
+          alert("Event Saved Successfully", data);
+          fetchAppointments();
+        },
+        onError: (error) => {
+          console.error("Error saving event", error);
+          alert("Error saving event", error);
+        },
+      });
     }
   };
 
