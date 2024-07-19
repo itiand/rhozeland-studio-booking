@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { CategoryContext } from "../context/CategoryContext";
 import { motion } from "framer-motion";
 import {
@@ -25,9 +25,15 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const buttonObj = useRef(null);
 
+  const { data, error, isLoading, refetch } = useQuery(
+    "appointments",
+    fetchAppointments
+  );
+
   ////TESTING POST EVENT
   ///////
   ///START
+
   ///////
   //dummy data to post
   const dummyEvent = {
@@ -35,8 +41,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     room_id: 1,
     employee_id: 1,
     book_date: "2024-07-05T15:53:57.192Z",
-    start_time: "2024-08-05T15:53:57.192Z",
-    end_time: "2024-08-05T15:53:57.192Z",
+    start_time: "2024-08-03T15:53:57.192Z",
+    end_time: "2024-08-03T15:53:57.192Z",
     canceled: true,
     num_guests: 0,
     in_person: true,
@@ -67,7 +73,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       onSuccess: (data) => {
         console.log("Event saved successfully", data);
         alert("Event saved successfully", data);
-        fetchAppointments();
+        refetch();
       },
       onError: (error) => {
         console.error("Error saving event", error);
@@ -114,8 +120,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         room_id: 1,
         employee_id: 1,
         book_date: "2024-08-05T15:53:57.192Z",
-        start_time: "2024-07-22T15:53:57.192Z",
-        end_time: "2024-07-22T15:53:57.192Z",
+        start_time: "2024-08-01T15:53:57.192Z",
+        end_time: "2024-08-01T15:53:57.192Z",
         canceled: true,
         num_guests: 0,
         in_person: true,
@@ -136,7 +142,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         onSuccess: (data) => {
           console.log("Event Saved Successfully", data);
           alert("Event Saved Successfully", data);
-          fetchAppointments();
+          refetch();
         },
         onError: (error) => {
           console.error("Error saving event", error);
