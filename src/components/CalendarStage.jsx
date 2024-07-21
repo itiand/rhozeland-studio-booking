@@ -25,10 +25,10 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const buttonObj = useRef(null);
 
-  const { data, error, isLoading, refetch } = useQuery(
-    "appointments",
-    fetchAppointments
-  );
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: ["appointments"],
+    queryFn: fetchAppointments,
+  });
 
   ////TESTING POST EVENT
   ///////
@@ -60,7 +60,8 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to save event");
+        const errorMessage = await response.text(); // Get error message from respons
+        throw new Error(`Failed to save event: ${errorMessage}`); // Include error message
       }
 
       return response.json();
@@ -138,7 +139,23 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       args.cancel = true; // Prevent default action
       const eventData = args.data[0]; // this is just one event. args.data is an array of events. but the post method expects a single event.
 
-      mutation.mutate(eventData, {
+      //need to reformat the data to match the format of the dummy data to post
+      const reformattedData = {
+        book_date: eventData.StartTime.toISOString(),
+        canceled: false,
+        client_id: 3,
+        description: eventData.Subject,
+        employee_id: 1,
+        end_time: eventData.EndTime.toISOString(),
+        in_person: true,
+        num_guests: 0,
+        room_id: 1,
+        start_time: eventData.StartTime.toISOString(),
+      };
+      console.log("eventData", eventData);
+      console.log("reformattedData", reformattedData);
+
+      mutation.mutate(reformattedData, {
         onSuccess: (data) => {
           console.log("Event Saved Successfully", data);
           alert("Event Saved Successfully", data);
