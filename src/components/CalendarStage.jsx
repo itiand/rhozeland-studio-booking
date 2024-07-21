@@ -17,6 +17,8 @@ import {
   Timezone,
 } from "@syncfusion/ej2-react-schedule";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
+import { format } from "date-fns";
+import { formatInTimeZone, toZonedTime } from "date-fns-tz";
 
 const CalendarStage = ({ appointmentType, specialist }) => {
   const { appointments, setAppointments, fetchAppointments } =
@@ -135,30 +137,71 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
   //intercepting the event creation to the UI
   const onActionBegin = async (args) => {
+    alert("onActionBegin is triggered. args is ", args);
+    console.log("onAtionBeging TRIGGERED!", args);
+
     if (args.requestType === "eventCreate") {
       args.cancel = true; // Prevent default action
       const eventData = args.data[0]; // this is just one event. args.data is an array of events. but the post method expects a single event.
 
+      console.log("eventData", eventData);
+
+      const desiredTimeZone = "America/Toronto";
+
+      //NOTE: MIGHT NOT EVEN NEED THIS AS IT"S ALREADY IN TORONTO TIME ZONE
+      const convertedStartTime = toZonedTime(
+        eventData.StartTime,
+        desiredTimeZone
+      );
+      const convertedEndTime = toZonedTime(eventData.EndTime, desiredTimeZone);
+      const convertedBookDate = toZonedTime(
+        eventData.StartTime,
+        desiredTimeZone
+      );
+
+      console.log("convertedStartTime", convertedStartTime);
+      console.log("convertedEndTime", convertedEndTime);
+      console.log("convertedBookDate", convertedBookDate);
+
+      console.log("now formatting the date to iso string....");
+
+      //formatting the date to iso string
+      const formattedStartTime = format(
+        convertedStartTime,
+        "yyyy-MM-dd'T'HH:mm:ssXXX"
+      );
+      const formattedEndTime = format(
+        convertedEndTime,
+        "yyyy-MM-dd'T'HH:mm:ssXXX"
+      );
+      const formattedBookDate = format(
+        convertedBookDate,
+        "yyyy-MM-dd'T'HH:mm:ssXXX"
+      );
+
+      console.log("formattedStartTime", formattedStartTime);
+      console.log("formattedStartTime type", typeof formattedStartTime);
+      console.log("formattedEndTime", formattedEndTime);
+      console.log("formattedBookDate", formattedBookDate);
+
       //need to reformat the data to match the format of the dummy data to post
       const reformattedData = {
-        book_date: eventData.StartTime,
+        book_date: formattedBookDate,
         canceled: false,
         client_id: 3,
         description: eventData.Subject,
         employee_id: 1,
-        end_time: eventData.EndTime,
+        end_time: formattedEndTime,
         in_person: true,
         num_guests: 0,
         room_id: 1,
-        start_time: eventData.StartTime,
+        start_time: formattedStartTime,
       };
-      console.log("eventData", eventData);
       console.log("reformattedData", reformattedData);
 
       mutation.mutate(reformattedData, {
         onSuccess: (data) => {
           console.log("Event Saved Successfully", data);
-          console.log("Type of data", typeof data.start_time);
           alert("Event Saved Successfully", data);
           refetch();
         },
