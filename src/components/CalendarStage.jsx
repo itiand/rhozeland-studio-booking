@@ -141,16 +141,16 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
       //need to reformat the data to match the format of the dummy data to post
       const reformattedData = {
-        book_date: eventData.StartTime.toISOString(),
+        book_date: eventData.StartTime,
         canceled: false,
         client_id: 3,
         description: eventData.Subject,
         employee_id: 1,
-        end_time: eventData.EndTime.toISOString(),
+        end_time: eventData.EndTime,
         in_person: true,
         num_guests: 0,
         room_id: 1,
-        start_time: eventData.StartTime.toISOString(),
+        start_time: eventData.StartTime,
       };
       console.log("eventData", eventData);
       console.log("reformattedData", reformattedData);
@@ -158,6 +158,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       mutation.mutate(reformattedData, {
         onSuccess: (data) => {
           console.log("Event Saved Successfully", data);
+          console.log("Type of data", typeof data.start_time);
           alert("Event Saved Successfully", data);
           refetch();
         },
@@ -256,6 +257,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         eventRendered={onEventRendered}
         actionBegin={onActionBegin}
         dataBinding={onDataBinding}
+        timezone="America/Toronto"
       >
         <ViewsDirective>
           <ViewDirective option="Week" />
