@@ -92,6 +92,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const refreshEvents = () => {
     if (scheduleRef.current) {
       console.log("refreshing events");
+      refetch();
       scheduleRef.current.refreshEvents();
     }
   };
