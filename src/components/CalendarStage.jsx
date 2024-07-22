@@ -27,7 +27,12 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const buttonObj = useRef(null);
 
-  const { data, error, isLoading, refetch } = useQuery({
+  const {
+    data,
+    error,
+    isLoading,
+    refetch: refetchAppointments,
+  } = useQuery({
     queryKey: ["appointments"],
     queryFn: fetchAppointments,
   });
@@ -76,7 +81,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
       onSuccess: (data) => {
         console.log("Event saved successfully", data);
         alert("Event saved successfully", data);
-        refetch();
+        refetchAppointments();
       },
       onError: (error) => {
         console.error("Error saving event", error);
@@ -92,7 +97,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
   const refreshEvents = () => {
     if (scheduleRef.current) {
       console.log("refreshing events");
-      refetch();
+      refetchAppointments();
       scheduleRef.current.refreshEvents();
     }
   };
