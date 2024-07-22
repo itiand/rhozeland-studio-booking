@@ -75,6 +75,20 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     },
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: async (bookingId) => {
+      const response = await fetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Failed to delete event: ${errorMessage}`);
+      }
+      return response.json();
+    },
+  });
+
   // Function to handle the button click
   const handleAddEvent = () => {
     mutation.mutate(dummyEvent, {
@@ -209,11 +223,27 @@ const CalendarStage = ({ appointmentType, specialist }) => {
         onSuccess: (data) => {
           console.log("Event Saved Successfully", data);
           alert("Event Saved Successfully", data);
-          refetch();
+          refetchAppointments();
         },
         onError: (error) => {
           console.error("Error saving event", error);
           alert("Error saving event", error);
+        },
+      });
+    }
+
+    if (args.requestType === "eventRemove") {
+      console.log("eventRemove is triggered. args is ", args);
+      const bookingId = args.data[0].Id; // Extract the booking ID
+      deleteMutation.mutate(bookingId, {
+        onSuccess: (data) => {
+          console.log("Event Deleted Successfully", data);
+          alert("Event Deleted Successfully", data);
+          refetchAppointments();
+        },
+        onError: (error) => {
+          console.error("Error deleting event", error);
+          alert("Error deleting event", error);
         },
       });
     }
