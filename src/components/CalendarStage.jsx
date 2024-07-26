@@ -206,6 +206,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
 
       //need to reformat the data to match the format of the dummy data to post
       const reformattedData = {
+        allday: eventData.IsAllDay,
         book_date: formattedBookDate,
         canceled: false,
         client_id: 3,
@@ -275,15 +276,15 @@ const CalendarStage = ({ appointmentType, specialist }) => {
     if (appointments.length > 0) {
       // Loop through each event and format the data
       for (let appointment of appointments) {
-        let isAllDay = false;
+        let isAllDay = appointment.allday;
         let start = appointment.start_time;
         let end = appointment.end_time;
 
         // Convert all-day event dates to Date objects
-        if (isAllDay) {
-          start = new Date(start + "T00:00:00");
-          end = new Date(end + "T00:00:00");
-        }
+        // if (isAllDay) {
+        //   start = new Date(start + "T00:00:00");
+        //   end = new Date(end + "T00:00:00");
+        // }
 
         // Push formatted event data to schedulerData
         schedulerData.push({
@@ -291,7 +292,7 @@ const CalendarStage = ({ appointmentType, specialist }) => {
           Subject: appointment.description,
           StartTime: start,
           EndTime: end,
-          IsAllDay: isAllDay,
+          IsAllDay: isAllDay, // currently hardcoded as false
         });
       }
     }
